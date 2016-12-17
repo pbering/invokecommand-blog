@@ -1,4 +1,5 @@
 ﻿using Blog.Data;
+using Blog.Data.Lightcore;
 using Lightcore.Configuration;
 using Lightcore.Hosting;
 using Lightcore.Kernel.Data.Storage;

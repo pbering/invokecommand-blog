@@ -5,7 +5,7 @@ using Lightcore.Kernel.Pipelines;
 using Lightcore.Kernel.Pipelines.Request;
 using Microsoft.AspNetCore.Http;
 
-namespace Blog.Data
+namespace Blog.Data.Lightcore
 {
     public class ResolveSingleLanguageProcessor : Processor<RequestArgs>
     {

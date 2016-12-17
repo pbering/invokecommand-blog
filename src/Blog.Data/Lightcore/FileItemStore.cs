@@ -8,7 +8,7 @@ using Lightcore.Kernel.Data.Globalization;
 using Lightcore.Kernel.Data.Presentation;
 using Lightcore.Kernel.Data.Storage;
 
-namespace Blog.Data
+namespace Blog.Data.Lightcore
 {
     public class FileItemStore : IItemStore
     {
