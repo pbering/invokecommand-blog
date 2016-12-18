@@ -4,6 +4,7 @@ using Lightcore.Configuration;
 using Lightcore.Hosting;
 using Lightcore.Kernel.Data.Storage;
 using Lightcore.Kernel.Pipelines.Request.Processors;
+using Lightcore.Kernel.Url;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -36,10 +37,11 @@ namespace Blog.Website
             services.Configure<LightcoreOptions>(options =>
             {
                 options.StartItem = "/home";
-                options.UseHtmlCache = false;
+                options.UseHtmlCache = true;
             });
 
             services.AddSingleton<IItemStore, FileItemStore>();
+            services.AddSingleton<IItemUrlService, NoLanguageItemUrlService>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)

@@ -40,7 +40,7 @@ namespace Blog.Data.Lightcore
                                     details: new PresentationDetails(layout, new List<Rendering>(new[]
                                     {
                                         new Rendering("main", string.Empty, "Post", new Dictionary<string, string>(),
-                                                      new Caching(false, false, false, false))
+                                                      new Caching(true, true, false, false))
                                     })));
 
                 posts.Add(item);
@@ -54,12 +54,11 @@ namespace Blog.Data.Lightcore
                                                                  new List<Rendering>(new[]
                                                                  {
                                                                      new Rendering("main", string.Empty, "Posts", new Dictionary<string, string>(),
-                                                                                   new Caching(false, false, false, false))
+                                                                                   new Caching(true, true, false, false))
                                                                  }))));
 
             _items.Add("/home/posts",
-                       new Item(new MutableItemDef("Posts", "/home/posts"), posts.OrderByDescending(item => item["date"]),
-                                new PresentationDetails(layout, new List<Rendering>())));
+                       new Item(new MutableItemDef("Posts", "/home/posts"), posts.OrderByDescending(item => item["date"])));
         }
 
         public Task<Item> GetVersionAsync(GetVersionQuery query)
