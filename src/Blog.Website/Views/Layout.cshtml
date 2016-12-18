@@ -10,8 +10,13 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@Model["title"] - invokecommand.net</title>
-    <link rel="stylesheet" href="/css/poole.css">
-    <link rel="stylesheet" href="/css/hyde.css">
+    <environment names="Development">
+        <link rel="stylesheet" href="/css/poole.css">
+        <link rel="stylesheet" href="/css/hyde.css">
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true"/>
+    </environment>
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
 </head>
 <body class="layout">
@@ -28,7 +33,7 @@
         <nav class="sidebar-nav">
             <a class="sidebar-nav-item" href="https://twitter.com/pbering">twitter.com/pbering</a>
             <a class="sidebar-nav-item" href="https://github.com/pbering">github.com/pbering</a>
-            <a class="sidebar-nav-item" href="http://invokecommand.net/rss.xml">RSS</a>
+            <a class="sidebar-nav-item" href="/rss.xml">RSS</a>
         </nav>
     </div>
 </div>
