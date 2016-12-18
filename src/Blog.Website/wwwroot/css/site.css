@@ -1,13 +1,11 @@
-﻿html {
-    background-color: rgb(12, 36, 53);
-}
+﻿html { }
 
 body {
-    color: #d4d4c9;
     font-family: "Courier New", Courier, monospace;
     font-size: 1.2em;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 0.5em;
-    width: 92%;
+    margin: 1em;
 }
+
+a { color: black; }
+
+a:hover { color: rgb(54, 54, 54); }

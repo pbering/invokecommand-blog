@@ -1,33 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using Blog.Data.Exceptions;
 using CommonMark;
 
-namespace Blog.Data.IO
+namespace Blog.Data
 {
     public class MarkdownFile
     {
-        private readonly FileBase _file;
-        private readonly Dictionary<string, string> _headers;
-        private bool _isParsed;
+        private readonly FileInfo _file;
 
-        public MarkdownFile(FileBase file)
+        public MarkdownFile(FileInfo file)
         {
             _file = file;
-            _headers = new Dictionary<string, string>();
 
+            Headers = new Dictionary<string, string>();
             Name = _file.Name.Replace(file.Extension, "");
-            Modified = _file.Modified;
         }
 
         public string Name { get; internal set; }
         public string Body { get; internal set; }
-        public DateTime Modified { get; internal set; }
+        public Dictionary<string, string> Headers { get; }
 
-        public virtual void Parse()
+        public void Parse()
         {
             using (TextReader reader = new StreamReader(_file.OpenRead(), Encoding.UTF8))
             {
@@ -65,7 +61,7 @@ namespace Blog.Data.IO
                         throw new InvalidHeaderException("More than one : found");
                     }
 
-                    _headers.Add(lineArray[0].Trim().ToLowerInvariant(), lineArray[1].Trim());
+                    Headers.Add(lineArray[0].Trim().ToLowerInvariant(), lineArray[1].Trim());
                 }
 
                 if (!headerDone && ((StreamReader)reader).EndOfStream)
@@ -73,35 +69,13 @@ namespace Blog.Data.IO
                     throw new ParseException("Headers not parsed yet but we are at the end of the stream");
                 }
 
-                if (headerDone && !_headers.Any())
+                if (headerDone && !Headers.Any())
                 {
                     throw new InvalidHeaderException("No headers was found");
                 }
 
                 Body = CommonMarkConverter.Convert(reader.ReadToEnd(), CommonMarkSettings.Default);
-
-                _isParsed = true;
             }
-        }
-
-        public virtual string GetHeaderValue(string key, bool optional = false)
-        {
-            if (!_isParsed)
-            {
-                Parse();
-            }
-
-            string value;
-
-            if (!_headers.TryGetValue(key, out value))
-            {
-                if (!optional)
-                {
-                    throw new HeaderNotFoundException($"'{key}' was not found in '{_file.FullName}'");
-                }
-            }
-
-            return value;
         }
     }
 }

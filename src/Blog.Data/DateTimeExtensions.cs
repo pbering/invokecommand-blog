@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TinyBlogNet
+namespace Blog.Data
 {
     public static class DateTimeExtensions
     {

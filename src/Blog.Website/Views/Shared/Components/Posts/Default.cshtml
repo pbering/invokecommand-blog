@@ -1,1 +1,12 @@
-﻿<h1>POSTS:</h1>
+﻿@inject IItemUrlService UrlService
+@using Blog.Data
+@using Lightcore.Kernel.Url
+@model Lightcore.Kernel.Data.Item
+@foreach (var child in Model.Children)
+{
+    <h2>
+        <a href="@UrlService.GetUrl(child)">@child["title"]</a>
+    </h2>
+    <p>@child["summary"]</p>
+    <span>Posted @DateTime.Parse(child["date"]).ToHumaneString()</span>
+}

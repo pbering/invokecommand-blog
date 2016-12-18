@@ -1,31 +1,24 @@
-﻿@using Lightcore.Mvc
-@using Lightcore.Kernel.Url
+﻿@using Lightcore.Kernel.Url
+@using Lightcore.Mvc
 @model Lightcore.Kernel.Data.Item
-@inject IItemUrlService Urls
+@inject IItemUrlService UrlService
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>@Model["Title"] - invokecommand.net</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@Model["title"] - invokecommand.net</title>
     <link rel="stylesheet" href="~/css/site.css">
 </head>
 <body>
-<h1>invokecommand.net</h1>
+<nav>
+    <a href="/">invokecommand.net</a>
+    <a href="https://twitter.com/pbering">twitter.com/pbering</a>
+    <a href="https://github.com/pbering">github.com/pbering</a>
+    <a href="http://invokecommand.net/rss.xml">RSS</a>
+</nav>
 <div>
     @await Html.Lightcore().PlaceholderAsync("main")
 </div>
-<footer>
-    <code>
-        Model.Type: @Model.GetType()<br />
-        Model.Id: @Model.Id<br />
-        Model.Language.Name: @Model.Language.Name<br />
-        Model.Path: @Model.Path<br />
-        Model.Key: @Model.Key<br />
-        Model.Name: @Model.Name<br />
-        Model.Url: @Urls.GetUrl(Model)<br />
-        Model.Fields.Count: @Model.Fields.Count()<br />
-        Model.Children.Count: @Model.Children.Count()<br />
-    </code>
-</footer>
 </body>
 </html>
