@@ -1,4 +1,5 @@
 ﻿using Blog.Data.Lightcore;
+using Blog.Website.Middleware;
 using Lightcore.Configuration;
 using Lightcore.Hosting;
 using Lightcore.Kernel.Data.Storage;
@@ -46,6 +47,7 @@ namespace Blog.Website
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             // TODO: Add output cache?
+            // TODO: change client cache processor to use public
 
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -54,16 +56,13 @@ namespace Blog.Website
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                // TODO: Handle exceptions...
-                app.UseExceptionHandler("/Errors/500");
-            }
 
             app.UseStaticFiles();
 
-            // TODO: For rss, sitemap and robots?
-            app.Map("/api", builder => { app.UseMvc(); });
+            // TODO: Set cache headers
+            app.UseMiddleware<RobotsTxtMiddleware>();
+            app.UseMiddleware<SitemapMiddleware>();
+            app.UseMiddleware<RssMiddleware>();
 
             app.UseLightcore();
         }
