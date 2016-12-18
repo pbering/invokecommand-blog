@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Blog.Data.Markdown;
 using Lightcore.Kernel.Data;
 using Lightcore.Kernel.Data.Fields;
 using Lightcore.Kernel.Data.Globalization;
@@ -57,7 +58,7 @@ namespace Blog.Data.Lightcore
                                                                  }))));
 
             _items.Add("/home/posts",
-                       new Item(new MutableItemDef("posts", "/home/posts"), posts.OrderByDescending(item => item["date"]),
+                       new Item(new MutableItemDef("Posts", "/home/posts"), posts.OrderByDescending(item => item["date"]),
                                 new PresentationDetails(layout, new List<Rendering>())));
         }
 

@@ -8,7 +8,90 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@Model["title"] - invokecommand.net</title>
-    <link rel="stylesheet" href="~/css/site.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+    <style>
+        html {
+            font-size: 20px;
+            line-height: 1.5;
+        }
+
+        body {
+            color: #515151;
+            font-family: "PT Sans", Helvetica, Arial, sans-serif;
+            margin: auto;
+        }
+
+        a {
+            color: #268bd2;
+            text-decoration: none;
+        }
+
+        a:hover { text-decoration: underline; }
+
+        h1 a { color: #303030; }
+
+        h1 {
+            font-weight: bold;
+            line-height: 1.25;
+            margin-bottom: .5rem;
+            text-rendering: optimizeLegibility;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            margin-top: 0;
+        }
+
+        blockquote {
+            border-left: .25rem solid #e5e5e5;
+            color: #7a7a7a;
+            margin: .8rem 0;
+            padding: .5rem 1rem;
+        }
+
+        code,
+        pre { font-family: Menlo, Monaco, "Courier New", monospace; }
+
+        code {
+            background-color: #f9f9f9;
+            border-radius: 3px;
+            color: #bf616a;
+            font-size: 85%;
+            padding: .25em .5em;
+        }
+
+        pre {
+            background-color: #f9f9f9;
+            display: block;
+            font-size: .8rem;
+            line-height: 1.4;
+            margin-bottom: 1rem;
+            margin-top: 0;
+            padding: 1rem;
+            white-space: pre;
+            white-space: pre-wrap;
+            word-break: break-all;
+            word-wrap: break-word;
+        }
+
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            font-size: 100%;
+            padding: 0;
+        }
+
+        .content {
+            margin-left: 2rem;
+            margin-right: 2rem;
+            max-width: 38rem;
+        }
+
+        nav {
+                background-color: #202020;
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
 <nav>
@@ -17,7 +100,7 @@
     <a href="https://github.com/pbering">github.com/pbering</a>
     <a href="http://invokecommand.net/rss.xml">RSS</a>
 </nav>
-<div>
+<div class="content">
     @await Html.Lightcore().PlaceholderAsync("main")
 </div>
 </body>

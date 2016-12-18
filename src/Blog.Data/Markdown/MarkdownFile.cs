@@ -2,10 +2,9 @@
 using System.IO;
 using System.Linq;
 using System.Text;
-using Blog.Data.Exceptions;
 using CommonMark;
 
-namespace Blog.Data
+namespace Blog.Data.Markdown
 {
     public class MarkdownFile
     {

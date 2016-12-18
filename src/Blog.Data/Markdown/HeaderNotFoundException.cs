@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Blog.Data.Exceptions
+namespace Blog.Data.Markdown
 {
     public class HeaderNotFoundException : Exception
     {

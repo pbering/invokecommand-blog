@@ -4,9 +4,9 @@
 @model Lightcore.Kernel.Data.Item
 @foreach (var child in Model.Children)
 {
-    <h2>
+    <h1>
         <a href="@UrlService.GetUrl(child)">@child["title"]</a>
-    </h2>
+    </h1>
     <p>@child["summary"]</p>
     <span>Posted @DateTime.Parse(child["date"]).ToHumaneString()</span>
 }

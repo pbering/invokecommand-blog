@@ -2,8 +2,8 @@
 @using Blog.Data
 @using Lightcore.Kernel.Url
 @model Lightcore.Kernel.Data.Item
-<h2>
+<h1>
     <a href="@UrlService.GetUrl(Model)">@Model["title"]</a>
-</h2>
+</h1>
 @Html.Raw(Model["text"])
 <span >Posted @DateTime.Parse(Model["date"]).ToHumaneString()</span>

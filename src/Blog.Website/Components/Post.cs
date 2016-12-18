@@ -16,7 +16,9 @@ namespace Blog.Website.Components
 
         public async Task<IViewComponentResult> InvokeAsync(RenderingContext renderingContext)
         {
-            return View();
+            var post = await _itemStore.GetVersionAsync(renderingContext.ItemId, renderingContext.ItemLanguageName);
+
+            return View(post);
         }
     }
 }
