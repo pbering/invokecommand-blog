@@ -1,5 +1,6 @@
 ﻿@inject IItemUrlService UrlService
 @using Blog.Data
+@using Blog.Website.Components
 @using Lightcore.Kernel.Url
 @model Lightcore.Kernel.Data.Item
 @foreach (var child in Model.Children)
@@ -8,5 +9,5 @@
         <a href="@UrlService.GetUrl(child)">@child["title"]</a>
     </h1>
     <p>@child["summary"]</p>
-    <span class="post-date">Posted @DateTime.Parse(child["date"]).ToHumaneString()</span>
+    <span class="post-date">Posted @DateTime.Parse(child["date"]).ToHumaneString(), tagged: @await Component.InvokeAsync(nameof(Tags), new { Item = child })</span>
 }

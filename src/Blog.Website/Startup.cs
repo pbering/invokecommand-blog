@@ -4,6 +4,7 @@ using Lightcore.Configuration;
 using Lightcore.Hosting;
 using Lightcore.Kernel.Data.Storage;
 using Lightcore.Kernel.Pipelines.Request.Processors;
+using Lightcore.Kernel.Pipelines.Response.Processors;
 using Lightcore.Kernel.Url;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -31,13 +32,15 @@ namespace Blog.Website
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddLightcore(Configuration, pipelines =>
-                                      pipelines.Request
-                                               .Replace<ResolveLanguageProcessor, ResolveSingleLanguageProcessor>());
+            {
+                pipelines.Request.Replace<ResolveLanguageProcessor, ResolveSingleLanguageProcessor>();
+                pipelines.Response.Replace<SetHttpCacheHeadersProcessor, SetPublicHttpCacheHeadersProcessor>();
+            });
 
             services.Configure<LightcoreOptions>(options =>
             {
                 options.StartItem = "/home";
-                options.UseHtmlCache = true;
+                options.UseHtmlCache = false;
             });
 
             services.AddSingleton<IItemStore, FileItemStore>();
@@ -46,8 +49,7 @@ namespace Blog.Website
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            // TODO: Add output cache?
-            // TODO: change client cache processor to use public
+            // TODO: Add response cache package?
 
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -59,7 +61,6 @@ namespace Blog.Website
 
             app.UseStaticFiles();
 
-            // TODO: Set cache headers
             app.UseMiddleware<RobotsTxtMiddleware>();
             app.UseMiddleware<SitemapMiddleware>();
             app.UseMiddleware<RssMiddleware>();

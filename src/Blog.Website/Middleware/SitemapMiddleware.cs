@@ -6,6 +6,7 @@ using Lightcore.Kernel.Data.Globalization;
 using Lightcore.Kernel.Data.Storage;
 using Lightcore.Kernel.Url;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Primitives;
 
 namespace Blog.Website.Middleware
 {
@@ -49,6 +50,7 @@ namespace Blog.Website.Middleware
                                        );
 
                 context.Response.ContentType = "text/xml";
+                context.Response.Headers.Add("Cache-Control", new StringValues("public, max-age=21600"));
 
                 await context.Response.WriteAsync(xml.ToString());
 

@@ -21,7 +21,7 @@ In my case I had the web database on-premise as the publisher and two subscriber
 
 But still we could see that data *was* being replicated and all events in the EventQueue tables was up to date.
 
-###So what happed?###
+### So what happed?
 
 On a Sitecore CD node the EventQueue is being checked for new events every 2 second by default (configured in "processingInterval"), in this check Sitecore uses a value from the Properties table named:
 

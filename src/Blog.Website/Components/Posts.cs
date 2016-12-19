@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Lightcore.Kernel.Data.Globalization;
 using Lightcore.Kernel.Data.Storage;
 using Lightcore.Mvc;
 using Microsoft.AspNetCore.Mvc;
@@ -17,9 +16,9 @@ namespace Blog.Website.Components
 
         public async Task<IViewComponentResult> InvokeAsync(RenderingContext renderingContext)
         {
-            var posts = await _itemStore.GetVersionAsync("/home/posts", Language.EnglishNeutral);
+            var model = await _itemStore.GetVersionAsync("/home/posts", renderingContext.ItemLanguageName);
 
-            return View(posts);
+            return View(model);
         }
     }
 }

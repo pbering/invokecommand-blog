@@ -2,6 +2,7 @@ using System;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Primitives;
 
 namespace Blog.Website.Middleware
 {
@@ -22,6 +23,9 @@ namespace Blog.Website.Middleware
 
                 text.Append("User-agent: *\n");
                 text.AppendFormat("Sitemap: {0}://{1}/sitemap.xml\n", context.Request.Scheme, context.Request.Host.Value);
+
+                context.Response.ContentType = "text/plain";
+                context.Response.Headers.Add("Cache-Control", new StringValues("public, max-age=21600"));
 
                 await context.Response.WriteAsync(text.ToString());
 

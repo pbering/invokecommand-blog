@@ -15,11 +15,11 @@ namespace Blog.Data.Lightcore
 {
     public class FileItemStore : IItemStore
     {
-        private readonly Dictionary<string, Item> _items;
+        private readonly List<Item> _items;
 
         public FileItemStore(IHostingEnvironment environment)
         {
-            _items = new Dictionary<string, Item>();
+            _items = new List<Item>();
 
             var layout = new Layout("/Views/Layout.cshtml");
             var postsPath = Path.Combine(environment.ContentRootPath, "Posts");
@@ -31,12 +31,11 @@ namespace Blog.Data.Lightcore
 
                 file.Parse();
 
-                var fields = file.Headers.Select(header => new Field(header.Key, Guid.Empty, header.Value)).ToList();
+                var fields = file.Headers.Select(header => new Field(header.Key, Guid.NewGuid(), header.Value)).ToList();
 
                 fields.Add(new Field("text", Guid.Empty, file.Body));
 
-                var path = "/home/posts/" + file.Name;
-                var item = new Item(new MutableItemDef(file.Name, path, fields),
+                var item = new Item(new MutableItemDef(file.Name, "/home/posts/" + file.Name, fields),
                                     details: new PresentationDetails(layout, new List<Rendering>(new[]
                                     {
                                         new Rendering("main", string.Empty, "Post", new Dictionary<string, string>(),
@@ -45,29 +44,56 @@ namespace Blog.Data.Lightcore
 
                 posts.Add(item);
 
-                _items.Add(path, item);
+                _items.Add(item);
             }
 
-            _items.Add("/home", new Item(new MutableItemDef("Home", "/home", new[] {new Field("title", Guid.Empty, "Home")}),
-                                         details:
-                                         new PresentationDetails(layout,
-                                                                 new List<Rendering>(new[]
-                                                                 {
-                                                                     new Rendering("main", string.Empty, "Posts", new Dictionary<string, string>(),
-                                                                                   new Caching(true, true, false, false))
-                                                                 }))));
+            var tagNames = new List<string>();
 
-            _items.Add("/home/posts",
-                       new Item(new MutableItemDef("Posts", "/home/posts"), posts.OrderByDescending(item => item["date"])));
+            foreach (var post in posts.Where(p => p.Fields["tags"] != null))
+            {
+                tagNames.AddRange(post["tags"].Split(',').Select(t => t.Trim()));
+            }
+
+            foreach (var tag in tagNames.Distinct())
+            {
+                var item = new Item(new MutableItemDef(tag, "/home/tags/" + tag, new[] {new Field("title", Guid.NewGuid(), tag)}),
+                                    details: new PresentationDetails(layout, new List<Rendering>(new[]
+                                    {
+                                        new Rendering("main", string.Empty, "Tag", new Dictionary<string, string>(),
+                                                      new Caching(true, true, false, false))
+                                    })));
+
+                _items.Add(item);
+            }
+
+            _items.Add(new Item(new MutableItemDef("Home", "/home", new[] {new Field("title", Guid.NewGuid(), "Home")}),
+                                details:
+                                new PresentationDetails(layout,
+                                                        new List<Rendering>(new[]
+                                                        {
+                                                            new Rendering("main", string.Empty, "Posts", new Dictionary<string, string>(),
+                                                                          new Caching(true, true, false, false))
+                                                        }))));
+
+            _items.Add(new Item(new MutableItemDef("Posts", "/home/posts"), posts.OrderByDescending(item => item["date"])));
         }
 
         public Task<Item> GetVersionAsync(GetVersionQuery query)
         {
-            Item item;
+            Item found = null;
 
-            _items.TryGetValue("/" + query.PathOrId, out item);
+            Guid id;
 
-            return Task.FromResult(item);
+            if (Guid.TryParse(query.PathOrId, out id))
+            {
+                found = _items.FirstOrDefault(item => item.Id == id);
+            }
+            else
+            {
+                found = _items.FirstOrDefault(item => item.Path == "/" + query.PathOrId);
+            }
+
+            return Task.FromResult(found);
         }
 
         public Task<IEnumerable<Item>> GetVersionsAsync(GetVersionsQuery query)
@@ -90,7 +116,7 @@ namespace Blog.Data.Lightcore
                 Name = name;
                 Key = name.ToLowerInvariant();
                 HasVersion = true;
-                Path = path;
+                Path = path.ToLowerInvariant();
                 ParentId = Guid.Empty;
                 TemplateId = Guid.Empty;
                 RevisionTag = "1";

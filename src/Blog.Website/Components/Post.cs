@@ -1,24 +1,12 @@
-﻿using System.Threading.Tasks;
-using Lightcore.Kernel.Data.Storage;
-using Lightcore.Mvc;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace Blog.Website.Components
 {
     public class Post : ViewComponent
     {
-        private readonly IItemStore _itemStore;
-
-        public Post(IItemStore itemStore)
+        public IViewComponentResult Invoke()
         {
-            _itemStore = itemStore;
-        }
-
-        public async Task<IViewComponentResult> InvokeAsync(RenderingContext renderingContext)
-        {
-            var post = await _itemStore.GetVersionAsync(renderingContext.ItemId, renderingContext.ItemLanguageName);
-
-            return View(post);
+            return View();
         }
     }
 }
