@@ -25,7 +25,7 @@ namespace Blog.Website.Middleware
                 text.AppendFormat("Sitemap: {0}://{1}/sitemap.xml\n", context.Request.Scheme, context.Request.Host.Value);
 
                 context.Response.ContentType = "text/plain";
-                context.Response.Headers.Add("Cache-Control", new StringValues("public, max-age=21600"));
+                context.Response.Headers.Add("Cache-Control", new StringValues("public, max-age=86400"));
 
                 await context.Response.WriteAsync(text.ToString());
 

@@ -14,7 +14,7 @@ namespace Blog.Data.Lightcore
 
             if (acceptedStatusCode)
             {
-                args.HttpContext.Response.Headers.Add("Cache-Control", new StringValues("public, max-age=3600"));
+                args.HttpContext.Response.Headers.Add("Cache-Control", new StringValues("public, max-age=86400"));
             }
 
             return Task.CompletedTask;
