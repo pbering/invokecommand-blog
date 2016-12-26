@@ -21,7 +21,6 @@ namespace Blog.Data.Lightcore
         {
             _items = new List<Item>();
 
-            var layout = new Layout("/Views/Layout.cshtml");
             var postsPath = Path.Combine(environment.ContentRootPath, "Posts");
             var posts = new List<Item>();
 
@@ -35,12 +34,7 @@ namespace Blog.Data.Lightcore
 
                 fields.Add(new Field("text", Guid.Empty, file.Body));
 
-                var item = new Item(new MutableItemDef(file.Name, "/home/posts/" + file.Name, fields),
-                                    details: new PresentationDetails(layout, new List<Rendering>(new[]
-                                    {
-                                        new Rendering("main", string.Empty, "Post", new Dictionary<string, string>(),
-                                                      new Caching(true, true, false, false))
-                                    })));
+                var item = NewItem(file.Name, "/home/posts/" + file.Name, "Post", fields);
 
                 posts.Add(item);
 
@@ -56,31 +50,16 @@ namespace Blog.Data.Lightcore
 
             foreach (var tag in tagNames.Distinct())
             {
-                var item = new Item(new MutableItemDef(tag, "/home/tags/" + tag, new[] {new Field("title", Guid.NewGuid(), tag)}),
-                                    details: new PresentationDetails(layout, new List<Rendering>(new[]
-                                    {
-                                        new Rendering("main", string.Empty, "Tag", new Dictionary<string, string>(),
-                                                      new Caching(true, true, false, false))
-                                    })));
-
-                _items.Add(item);
+                _items.Add(NewItem(tag, "/home/tags/" + tag, "Tag", new[] {new Field("title", Guid.NewGuid(), tag)}));
             }
 
-            _items.Add(new Item(new MutableItemDef("Home", "/home", new[] {new Field("title", Guid.NewGuid(), "Home")}),
-                                details:
-                                new PresentationDetails(layout,
-                                                        new List<Rendering>(new[]
-                                                        {
-                                                            new Rendering("main", string.Empty, "Posts", new Dictionary<string, string>(),
-                                                                          new Caching(true, true, false, false))
-                                                        }))));
-
-            _items.Add(new Item(new MutableItemDef("Posts", "/home/posts"), posts.OrderByDescending(item => item["date"])));
+            _items.Add(NewItem("Home", "/home", "Posts", new[] {new Field("title", Guid.NewGuid(), "Home")}));
+            _items.Add(NewItem("Posts", "/home/posts", children: posts.OrderByDescending(item => item["date"])));
         }
 
         public Task<Item> GetVersionAsync(GetVersionQuery query)
         {
-            Item found = null;
+            Item found;
 
             Guid id;
 
@@ -101,6 +80,36 @@ namespace Blog.Data.Lightcore
             throw new NotSupportedException();
         }
 
+        private Item NewItem(string name, string path, string component = null,
+                             IEnumerable<Field> fields = null,
+                             IEnumerable<IItemDefinition> children = null)
+        {
+            if (fields == null)
+            {
+                fields = new List<Field>(0);
+            }
+
+            if (children == null)
+            {
+                children = new List<IItemDefinition>(0);
+            }
+
+            return new Item(new MutableItemDef(name, path, fields), children, NewPresentationDetails(component));
+        }
+
+        private PresentationDetails NewPresentationDetails(string component)
+        {
+            if (component == null)
+            {
+                return null;
+            }
+
+            return new PresentationDetails(new Layout("/Views/Layout.cshtml"), new List<Rendering>(new[]
+            {
+                new Rendering("main", string.Empty, component, new Dictionary<string, string>(), new Caching(true, true, false, false))
+            }));
+        }
+
         private class MutableItemDef : IItemDefinition
         {
             public MutableItemDef(string name, string path, IEnumerable<Field> fields) : this(name, path)
@@ -108,7 +117,7 @@ namespace Blog.Data.Lightcore
                 Fields = new FieldCollection(fields);
             }
 
-            public MutableItemDef(string name, string path)
+            private MutableItemDef(string name, string path)
             {
                 Fields = new FieldCollection(Enumerable.Empty<Field>());
                 Language = Language.EnglishNeutral;
