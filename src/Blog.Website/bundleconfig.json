@@ -2,7 +2,9 @@
   {
     "outputFileName": "wwwroot/css/site.min.css",
     "inputFiles": [
-      "wwwroot/css/*.css"
+      "wwwroot/css/poole.css",
+      "wwwroot/css/hyde.css",
+      "wwwroot/css/site.css"
     ]
   }
 ]

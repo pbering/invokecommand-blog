@@ -18,8 +18,6 @@ namespace Blog.Website.Data
 
             var postsPath = Path.Combine(environment.ContentRootPath, "Posts");
 
-            // TODO: Async...
-
             foreach (var filePath in Directory.GetFiles(postsPath, "*.md"))
             {
                 var file = new MarkdownFile(new FileInfo(filePath));
