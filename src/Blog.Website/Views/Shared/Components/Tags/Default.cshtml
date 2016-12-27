@@ -1,5 +1,0 @@
-﻿@model Dictionary<string, string>
-@foreach (var item in Model.Select((tag, index) => new { index, tag }))
-{
-    <a href="@item.tag.Value">@item.tag.Key</a>if (item.index < Model.Keys.Count - 1){@Html.Raw(", ")}
-}

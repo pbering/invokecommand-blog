@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - invokecommand.net</title>
+    <link rel="alternate" type="application/rss+xml" title="@ViewBag.SiteName" href="/rss.xml" />
+    <link rel="stylesheet" href="/Content/css/poole.css">
+    <link rel="stylesheet" href="/Content/css/hyde.css">
+    <link rel="stylesheet" href="/Content/css/site.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+</head>
+<body class="layout">
+    <div class="sidebar">
+        <div class="container sidebar-sticky">
+            <div class="sidebar-about">
+                <h2>
+                    <a href="/">
+                        invokecommand.net
+                    </a>
+                </h2>
+                <p class="lead">thoughts about code, devops and technology</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a class="sidebar-nav-item" href="https://twitter.com/pbering">twitter.com/pbering</a>
+                <a class="sidebar-nav-item" href="https://github.com/pbering">github.com/pbering</a>
+                <a class="sidebar-nav-item" href="http://invokecommand.net/rss.xml">RSS</a>
+            </nav>
+        </div>
+    </div>
+    <div class="content container">
+        @RenderBody()
+    </div>
+</body>
+</html>

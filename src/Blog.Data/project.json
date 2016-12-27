@@ -2,7 +2,6 @@
   "version": "1.0.0-*",
 
   "dependencies": {
-    "Lightcore.Runtime": "2.0.0-beta4",
     "CommonMark.NET": "0.14.0",
     "NETStandard.Library": "1.6.1"
   },

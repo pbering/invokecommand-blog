@@ -1,11 +1,5 @@
-﻿using Blog.Data.Lightcore;
+﻿using Blog.Website.Data;
 using Blog.Website.Middleware;
-using Lightcore.Configuration;
-using Lightcore.Hosting;
-using Lightcore.Kernel.Data.Storage;
-using Lightcore.Kernel.Pipelines.Request.Processors;
-using Lightcore.Kernel.Pipelines.Response.Processors;
-using Lightcore.Kernel.Url;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -31,20 +25,9 @@ namespace Blog.Website
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddLightcore(Configuration, pipelines =>
-            {
-                pipelines.Request.Replace<ResolveLanguageProcessor, ResolveSingleLanguageProcessor>();
-                pipelines.Response.Replace<SetHttpCacheHeadersProcessor, SetPublicHttpCacheHeadersProcessor>();
-            });
+            services.AddMvc();
 
-            services.Configure<LightcoreOptions>(options =>
-            {
-                options.StartItem = "/home";
-                options.UseHtmlCache = false;
-            });
-
-            services.AddSingleton<IItemStore, FileItemStore>();
-            services.AddSingleton<IItemUrlService, NoLanguageItemUrlService>();
+            services.AddSingleton<IPostRepository, PostRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
@@ -65,7 +48,7 @@ namespace Blog.Website
             app.UseMiddleware<SitemapMiddleware>();
             app.UseMiddleware<RssMiddleware>();
 
-            app.UseLightcore();
+            app.UseMvcWithDefaultRoute();
         }
     }
 }
