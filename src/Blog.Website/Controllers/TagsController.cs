@@ -5,17 +5,17 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Blog.Website.Controllers
 {
-    public class TagController : Controller
+    public class TagsController : Controller
     {
         private readonly IPostRepository _repository;
 
-        public TagController(IPostRepository repository)
+        public TagsController(IPostRepository repository)
         {
             _repository = repository;
         }
 
         [ResponseCache(Duration = 86400, Location = ResponseCacheLocation.Any)]
-        [Route("tag/{*name}")]
+        [Route("tags/{*name}")]
         public IActionResult Index(string name)
         {
             var model =
