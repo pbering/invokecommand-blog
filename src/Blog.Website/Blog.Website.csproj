@@ -12,6 +12,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="wwwroot\content\images\sitecore432-contenteditor.png" />
+    <Content Include="wwwroot\content\images\sitecore432-login.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="wwwroot\**\*">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </None>
