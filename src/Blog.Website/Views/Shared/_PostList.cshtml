@@ -1,0 +1,11 @@
+﻿@model Blog.Website.Models.HomeModel
+<div class="posts">
+    @foreach (var post in Model.Posts)
+    {
+        <h1 class="post-title">
+            <a href="@post.Url">@post.Title</a>
+        </h1>
+        <p>@post.Summary</p>
+        @Html.Partial("_Tagged", post)
+    }
+</div>

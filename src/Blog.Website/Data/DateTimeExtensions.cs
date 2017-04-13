@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Blog.Data
+namespace Blog.Website.Data
 {
     public static class DateTimeExtensions
     {

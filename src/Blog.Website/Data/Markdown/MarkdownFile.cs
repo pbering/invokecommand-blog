@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using CommonMark;
 
-namespace Blog.Data.Markdown
+namespace Blog.Website.Data.Markdown
 {
     public class MarkdownFile
     {
@@ -14,19 +14,19 @@ namespace Blog.Data.Markdown
         {
             _file = file;
 
-            Headers = new Dictionary<string, string>();
+            Fields = new Dictionary<string, string>();
             Name = _file.Name.Replace(file.Extension, "");
         }
 
         public string Name { get; internal set; }
         public string Body { get; internal set; }
-        public Dictionary<string, string> Headers { get; }
+        public Dictionary<string, string> Fields { get; }
 
         public void Parse()
         {
             using (TextReader reader = new StreamReader(_file.OpenRead(), Encoding.UTF8))
             {
-                var headerDone = false;
+                var done = false;
                 var line = reader.ReadLine();
 
                 if (string.IsNullOrEmpty(line))
@@ -43,7 +43,7 @@ namespace Blog.Data.Markdown
                 {
                     if (line.Equals("---"))
                     {
-                        headerDone = true;
+                        done = true;
 
                         break;
                     }
@@ -52,25 +52,25 @@ namespace Blog.Data.Markdown
 
                     if (lineArray.Length < 2)
                     {
-                        throw new InvalidHeaderException("No : found");
+                        throw new InvalidFieldException("No : found");
                     }
 
                     if (lineArray.Length > 2)
                     {
-                        throw new InvalidHeaderException("More than one : found");
+                        throw new InvalidFieldException("More than one : found");
                     }
 
-                    Headers.Add(lineArray[0].Trim().ToLowerInvariant(), lineArray[1].Trim());
+                    Fields.Add(lineArray[0].Trim().ToLowerInvariant(), lineArray[1].Trim());
                 }
 
-                if (!headerDone && ((StreamReader)reader).EndOfStream)
+                if (!done && ((StreamReader)reader).EndOfStream)
                 {
-                    throw new ParseException("Headers not parsed yet but we are at the end of the stream");
+                    throw new ParseException("Fields not parsed yet but we are at the end of the stream");
                 }
 
-                if (headerDone && !Headers.Any())
+                if (done && !Fields.Any())
                 {
-                    throw new InvalidHeaderException("No headers was found");
+                    throw new InvalidFieldException("No fields was found");
                 }
 
                 Body = CommonMarkConverter.Convert(reader.ReadToEnd(), CommonMarkSettings.Default);

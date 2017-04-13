@@ -2,9 +2,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using Lightcore.Kernel.Data.Globalization;
-using Lightcore.Kernel.Data.Storage;
-using Lightcore.Kernel.Url;
+using Blog.Website.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
 
@@ -12,22 +10,20 @@ namespace Blog.Website.Middleware
 {
     public class SitemapMiddleware
     {
-        private readonly IItemStore _itemStore;
         private readonly RequestDelegate _next;
-        private readonly IItemUrlService _urlService;
+        private readonly IPostRepository _postRepository;
 
-        public SitemapMiddleware(RequestDelegate next, IItemStore itemStore, IItemUrlService urlService)
+        public SitemapMiddleware(RequestDelegate next, IPostRepository postRepository)
         {
             _next = next;
-            _itemStore = itemStore;
-            _urlService = urlService;
+            _postRepository = postRepository;
         }
 
         public async Task Invoke(HttpContext context)
         {
             if (context.Request.Path.Equals(new PathString("/sitemap.xml"), StringComparison.OrdinalIgnoreCase))
             {
-                var posts = await _itemStore.GetVersionAsync("/home/posts", Language.EnglishNeutral);
+                var posts = _postRepository.Get();
 
                 XNamespace ns = "http://www.sitemaps.org/schemas/sitemap/0.9";
 
@@ -38,13 +34,13 @@ namespace Blog.Website.Middleware
                                                                   new XElement(ns + "loc", context.Request.Scheme + "://" + context.Request.Host.Value),
                                                                   new XElement(ns + "lastmod", DateTime.Now.ToString("yyyy-MM-dd")),
                                                                   new XElement(ns + "changefreq", "daily")),
-                                                     from post in posts.Children
+                                                     from post in posts
                                                      select
                                                      new XElement(ns + "url",
                                                                   new XElement(ns + "loc",
                                                                                context.Request.Scheme + "://" + context.Request.Host.Value +
-                                                                               _urlService.GetUrl(post)),
-                                                                  new XElement(ns + "lastmod", post["date"]),
+                                                                               post.Name),
+                                                                  new XElement(ns + "lastmod", post.Published.ToString("yyyy-MM-dd")),
                                                                   new XElement(ns + "changefreq", "daily"))
                                                     )
                                        );

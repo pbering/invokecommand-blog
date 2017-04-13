@@ -7,7 +7,7 @@ tags: Sitecore, Containers, Docker, Notes
 
 Here you can find some tips and tricks I picked up while playing around with this awesome new  Windows feature. You should also read [Part 1](/posts/sitecore-and-windows-server-containers) before this makes any sense :)
 
-### Host VM tweaks
+###Host VM tweaks###
 
 - To manage the host from your workstation you can use `Enter-PSSession -VMName "wscdev"`, more about the new PowerShell Direct feature on [MSDN](https://msdn.microsoft.com/en-us/virtualization/hyperv_on_windows/user_guide/vmsession "MSDN").
 - Remove Windows Defender, totally cripples build and running images:
@@ -27,7 +27,7 @@ Here you can find some tips and tricks I picked up while playing around with thi
 	5. Use "Explorer" to eject the mounted VHD.
 	6. Use VhdPath parameter of New-ContainerHost.ps1 to reference the expanded VHD.
 
-### Connecting with the host VM from your workstation
+###Connecting with the host VM from your workstation###
 
 1. On the host add **" -H 0.0.0.0:2375"** right after the first occurrence of **"-b "Virtual Switch"** and before the **"goto"** in the file **"c:\ProgramData\docker\runDockerDaemon.cmd"**
 
@@ -41,7 +41,7 @@ Here you can find some tips and tricks I picked up while playing around with thi
 
 You can now use `docker.exe` from you workstation!
 
-### Cleaning up
+###Cleaning up###
 
 Delete all stopped containers:
 
@@ -51,7 +51,7 @@ Delete all tagged images tagged with "none":
 	
 	docker rmi $(docker images -q -f dangling=true)
 
-### Other stuff
+###Other stuff###
 
 - Modifying NTFS permissions in containers [does not work](https://social.msdn.microsoft.com/Forums/en-US/fbb8bd89-d86d-4609-8607-558b28f93592/ntfs-permissions-not-committed?forum=windowscontainers) - Everything must run as LocalSystem...
 - Please go vote on [Native container support on Windows 10](https://windowsserver.uservoice.com/forums/304624-containers/suggestions/11120520-native-container-support-on-windows-10) so we can run containers without an extra host VM layer.

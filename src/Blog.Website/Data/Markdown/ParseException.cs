@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Blog.Data.Markdown
+namespace Blog.Website.Data.Markdown
 {
     public class ParseException : Exception
     {
