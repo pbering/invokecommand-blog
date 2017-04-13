@@ -10,11 +10,11 @@ namespace Blog.Website.Data
 {
     public class PostRepository : IPostRepository
     {
-        private readonly List<PostModel> _posts;
+        private readonly IEnumerable<PostModel> _posts;
 
         public PostRepository(IHostingEnvironment environment)
         {
-            _posts = new List<PostModel>();
+            var posts = new List<PostModel>();
 
             var postsPath = Path.Combine(environment.ContentRootPath, "Posts");
 
@@ -35,11 +35,13 @@ namespace Blog.Website.Data
                     Url = "/posts/" + file.Name
                 };
 
-                _posts.Add(post);
+                posts.Add(post);
             }
+
+            _posts = posts.OrderByDescending(p => p.Published);
         }
 
-        public IReadOnlyCollection<PostModel> Get()
+        public IEnumerable<PostModel> Get()
         {
             return _posts;
         }

@@ -5,6 +5,6 @@ namespace Blog.Website.Data
 {
     public interface IPostRepository
     {
-        IReadOnlyCollection<PostModel> Get();
+        IEnumerable<PostModel> Get();
     }
 }

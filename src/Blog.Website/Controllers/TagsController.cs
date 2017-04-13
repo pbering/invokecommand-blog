@@ -20,8 +20,7 @@ namespace Blog.Website.Controllers
         {
             var model =
                 new HomeModel(_repository.Get()
-                                         .Where(p => p.Tags.Select(t => t.ToLowerInvariant()).Contains(name))
-                                         .OrderByDescending(p => p.Published));
+                                         .Where(p => p.Tags.Select(t => t.ToLowerInvariant()).Contains(name)));
 
             if (model.Posts.Any())
             {

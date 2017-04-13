@@ -5,11 +5,11 @@ date: 2015-11-23
 tags: Sitecore, Containers, Docker
 ---
 
-### Be sure to also read...
+### Be sure to also read... ###
 
 Part 2: [Tips and trick](/posts/sitecore-and-windows-server-containers-part-2)
 
-### Say what?
+### Say what? ###
 
 Today it's possible to run .NET applications built with ASP.NET 5 targeting CoreCLR, natively on Linux. **But for applications like Sitecore that is based on ASP.NET 4.5 and the full .NET framework, Windows and IIS on bare metal or VM's are our only options, until now that is.** 
 
@@ -21,7 +21,7 @@ In case you don't know what Windows Server Containers (WSC) is about:
 
 In TP4 is is now for the first time possible to install and use the ASP.NET 4.5 IIS feature, read more about application compatibility on [MSDN]( https://msdn.microsoft.com/en-us/virtualization/windowscontainers/reference/app_compat).
 
-### Getting started
+### Getting started ###
 
 The focus in this article is on Windows Server Containers so using Hyper-V on Windows 10 RTM can be used if you wish to try this out on you own box as I did. It's faster to copy the 450 MB  of Sitecore files locally than to, for example a host in Azure, at least while your are building images.
 
@@ -45,7 +45,7 @@ The focus in this article is on Windows Server Containers so using Hyper-V on Wi
 15. Type `docker run --name sitecoredemo -it -p 80:80 sitecore PowerShell` to start you new container!
 16. You can now access Sitecore on `http://10.20.34.200` from you desktop!  
 
-### Why is this important?
+### Why is this important?###
 
 You properly already read about and maybe used containers before with Docker and aware of the benefits and possibilities. 
 
@@ -68,6 +68,6 @@ So with image 4 you will only be deploying a 50 MB image through your pipeline r
 
 Imagine a 50 MB container image that boots in seconds right on your dev or test box!  Containers are also way more lightweight in terms of both size and resource consumption than VM's, so you can have many isolated containers running on a single host. I does not matter if that host is your local machine, your own data center or the cloud, containers are portable across hosts.
 
-### Summary
+### Summary ###
 
 **Sitecore in a container, this is indeed possible today** and something I will dig much more into. Imagine a future where Sitecore delivers containers through there own Docker repository, ready to use containers of every version of Sitecore, that we could build our own images from. Imagine Sitecore delivers ready made CD and CM optimized containers!

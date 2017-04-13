@@ -5,13 +5,13 @@ date: 2015-10-04
 tags: Sitecore, SQL, Notes
 ---
 
-### TL;DR
+###TL;DR###
 
 **Always** clear all rows where the Key starts with "EQStamp_" in the Properties table after re-initializing SQL Server replication, so that the CD nodes knows the "timestamp" of the latest event in the EventQueue.
 
 	DELETE FROM [Properties] WHERE [Key] LIKE 'EQStamp_%'
 
-### Scenario
+###Scenario###
 
 You are using SQL Server replication on one or more Sitecore databases, typically the web database to keep databases in sync across data centers. Things runs fine but then you need to make changes to the replication where you need to remove subscribers and reinitialize them again. Could be to physically move databases to another cluster or during recovery.
 
@@ -21,7 +21,7 @@ In my case I had the web database on-premise as the publisher and two subscriber
 
 But still we could see that data *was* being replicated and all events in the EventQueue tables was up to date.
 
-### So what happed?
+###So what happed?###
 
 On a Sitecore CD node the EventQueue is being checked for new events every 2 second by default (configured in "processingInterval"), in this check Sitecore uses a value from the Properties table named:
 

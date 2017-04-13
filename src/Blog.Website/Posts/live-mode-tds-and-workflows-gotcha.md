@@ -5,15 +5,15 @@ date: 2015-11-16
 tags: TDS, Sitecore, Notes
 ---
 
-### UPDATED 2015-11-19
+###UPDATED 2015-11-19###
 
 > Hedgehog Development, the guys that makes TDS has fixed this issue in the next release, presumable v5.1.0.23 which I also tested. Thank you for the superb support!
 
-### Lesson learned
+###Lesson learned###
 
 Make sure to set `filterItem="false"` on you site if you need to add or sync a __Standard Values item that has workflow settings with TDS (Team Development for Sitecore).
 
-### Scenario
+###Scenario###
 
 Today I worked on solution that uses "Live Mode" locally using these settings:
 
