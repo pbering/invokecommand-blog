@@ -5,25 +5,26 @@ date: 2015-11-16
 tags: TDS, Sitecore, Notes
 ---
 
-###UPDATED 2015-11-19###
+### UPDATED 2015-11-19
 
 > Hedgehog Development, the guys that makes TDS has fixed this issue in the next release, presumable v5.1.0.23 which I also tested. Thank you for the superb support!
 
-###Lesson learned###
+### Lesson learned
 
 Make sure to set `filterItem="false"` on you site if you need to add or sync a __Standard Values item that has workflow settings with TDS (Team Development for Sitecore).
 
-###Scenario###
+### Scenario
 
 Today I worked on solution that uses "Live Mode" locally using these settings:
 
-	<site name="website"
-		  database="master" 
-		  filterItems="true" 
-		  enableWorkflow="true" 
-		  ... />
+````xml
+<site name="website"
+    database="master"
+    filterItems="true"
+    enableWorkflow="true" ... />
+````
 
-The template in question was a just "marker" template with no fields but it defined which workflow and which state should be used by future items of that template. 
+The template in question was a just "marker" template with no fields but it defined which workflow and which state should be used by future items of that template.
 
 So I wanted to add that template and its the __Standard Values item to my TDS project (using latest version of TDS) but when I used the "Get Sitecore Items" dialog the __Standard values item was not visible from the list of items...
 

@@ -9,7 +9,7 @@ I love the [legacy in a box](https://www.thoughtworks.com/radar/techniques/legac
 using [Docker](/tags/docker) so I don't need to pollute my environment with all kinds of crazy dependencies.
 
 So I wanted to see just how "legacy" I could go and get the very first Sitecore version I ever used to run in a 
-container... Behold! The rock solid performer: Sitecore v4.3.2 from October 2005, based on .NET 1.0! 
+container... Behold! The rock solid performer: Sitecore v4.3.2 from October 2005, based on .NET 1.0!
 
 Here's a few screenshots:
 
