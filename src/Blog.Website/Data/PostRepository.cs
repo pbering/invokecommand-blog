@@ -15,7 +15,6 @@ namespace Blog.Website.Data
         public PostRepository(IHostingEnvironment environment)
         {
             var posts = new List<PostModel>();
-
             var postsPath = Path.Combine(environment.ContentRootPath, "Posts");
 
             foreach (var filePath in Directory.GetFiles(postsPath, "*.md"))
