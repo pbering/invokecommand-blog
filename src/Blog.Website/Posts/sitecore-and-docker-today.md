@@ -5,7 +5,7 @@ date: 2016-10-30
 tags: Sitecore, Containers, Docker
 ---
 
-A lot has happend since my last post on Sitecore and Windows containers:
+A lot has happened since my last post on Sitecore and Windows containers:
 
 1. Windows Server 2016 is now released with builtin Docker CS (commercially supported). For free!
 1. "windowsservercore" based containers is now supported on Windows 10 besides "nanoserver". Full .NET Framework support!
@@ -14,7 +14,7 @@ A lot has happend since my last post on Sitecore and Windows containers:
 
 There are some issue though:
 
-1. Windows NAT and Docker is not working as with Linux container ie. you can't publish ports from containers to localhost. 
+1. Windows NAT and Docker is not working as with Linux container ie. you can't publish ports from containers to localhost.
  So from your host you need to access the containers on the container IP instead of for example localhost:8000. You can access publish ports externally with the IP of the host though.
  More details here [https://blog.sixeyed.com/published-ports-on-windows-containers-dont-do-loopback/](https://blog.sixeyed.com/published-ports-on-windows-containers-dont-do-loopback/) - I expect this to be "fixed" in future Windows version or for local development in "Docker for Windows".
 1. Mixing Linux and Windows containers is not supported in Compose (yet?), so it is not possible to have both Linux and Windows containers in the same compose file communicating.
