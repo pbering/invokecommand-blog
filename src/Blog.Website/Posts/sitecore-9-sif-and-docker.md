@@ -11,4 +11,4 @@ For every Sitecore version I also build base Docker images and have this automat
 
 Turns out it does! I basically just made a Docker file with required dependencies and executing the step described in the installation guide.
 
-Here's a repository [https://github.com/pbering/sitecore-nine-docker](https://github.com/pbering/sitecore-nine-docker) with description on how to get it up and running and you can see the full Docker file here [https://github.com/pbering/sitecore-nine-docker/blob/master/sitecore-xm1/Dockerfile](https://github.com/pbering/sitecore-nine-docker/blob/master/sitecore-xm1/Dockerfile]).
+Here's a repository [https://github.com/pbering/sitecore-nine-docker](https://github.com/pbering/sitecore-nine-docker) with description on how to get it up and running and you can see the full Docker file here: [https://github.com/pbering/sitecore-nine-docker/blob/master/sitecore-xm1/Dockerfile](https://github.com/pbering/sitecore-nine-docker/blob/master/sitecore-xm1/Dockerfile).
