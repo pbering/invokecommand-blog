@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+<!DOCTYPE html>
 <html>
 <head>
     <title>@ViewBag.Title - invokecommand.net</title>
@@ -16,6 +17,7 @@
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+    @Html.Raw(JavaScriptSnippet.FullScript)
 </head>
 <body>
     <div class="sidebar">
