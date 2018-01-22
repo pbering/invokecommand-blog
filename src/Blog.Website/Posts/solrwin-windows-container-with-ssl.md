@@ -1,5 +1,5 @@
 ---
-title: solrwin - a Solr 6.6.2 Windows container with SSL
+title: solrwin, Solr in a Windows container with SSL
 summary: Need a Solr server with SSL in a 1.5 GB nanoserver container that also works with Sitecore 9 and SIF?
 date: 2018-01-22
 tags: Solr, Sitecore, Containers, Docker, nanoserver
@@ -13,8 +13,8 @@ It also works with Sitecore 9.0.0 and 9.0.1 (where Solr now is the default searc
 
 To use with SIF you need to copy the default "sitecore-solr.json" configuration and in that:
 
-1. Remove the "StopSolr" and "StartSolr" task
-1. Change the variable "Solr.Server" value to just: `[variable('Solr.FullRoot')]`
+1. Remove the **"StopSolr"** and **"StartSolr"** tasks.
+1. Change the variable "Solr.Server" value to just **"[variable('Solr.FullRoot')]"**
 
 Then you can install the Solr cores with:
 
