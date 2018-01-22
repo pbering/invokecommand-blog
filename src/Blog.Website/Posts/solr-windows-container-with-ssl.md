@@ -16,7 +16,7 @@ To use with SIF you need to copy the default "sitecore-solr.json" configuration 
 1. Remove the "StopSolr" and "StartSolr" task
 1. Change the variable "Solr.Server" value to just: `[variable('Solr.FullRoot')]`
 
-Then you can install the core with:
+Then you can install the Solr cores with:
 
 ```` PowerShell
 Install-SitecoreConfiguration @{
