@@ -6,10 +6,6 @@
     <ApplicationInsightsResourceId>/subscriptions/9a29784c-7e20-4c9b-ba73-e8ae1a87b470/resourcegroups/invokecommand/providers/microsoft.insights/components/invokecommandnet</ApplicationInsightsResourceId>
     <ApplicationInsightsAnnotationResourceId>/subscriptions/9a29784c-7e20-4c9b-ba73-e8ae1a87b470/resourcegroups/invokecommand/providers/microsoft.insights/components/invokecommandnet</ApplicationInsightsAnnotationResourceId>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Content Remove="wwwroot\css\site.min.css" />
-  </ItemGroup>
  
   <ItemGroup>
     <PackageReference Include="BuildBundlerMinifier" Version="2.6.362" />
