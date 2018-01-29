@@ -1,6 +1,6 @@
 ---
 title: Sitecore and Docker in production - part 1
-summary: Automated repository of Sitecore Docker base images
+summary: Introduction and automated repository of Sitecore Docker base images
 date: 2018-01-31
 tags: CI/CD, Sitecore, Docker, Series, Containers
 ---
@@ -22,7 +22,7 @@ Just to make it clear, everything in this series can also used for other applica
 
 In this first post I will lay the foundation for reaching those goals.
 
-## Automated repository of Sitecore versions
+## Automated repository of Sitecore Docker base images
 
 Having a repository of base images for each Sitecore version that can be shared between machines (developer workstations, servers etc.) is the foundation of it all. Base images will also serve as the base for specialized images for the different roles, ie. CM, CD, Reporting, Processing, xConnect etc.
 
