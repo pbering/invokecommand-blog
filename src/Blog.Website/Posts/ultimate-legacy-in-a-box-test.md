@@ -57,7 +57,7 @@ RUN powershell -Command \
 
 You can get everything needed here if you dare: [https://github.com/pbering/SockerOldSchool](https://github.com/pbering/SockerOldSchool)
 
-# Conclusion
+## Conclusion
 
 Is this crazy? Yes it is! But the point here is besides the fun of it, it's possible run very old legacy applications without much effort in a *clean* and *isolated* way.
 
