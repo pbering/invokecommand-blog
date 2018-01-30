@@ -1,1 +1,7 @@
-﻿.sidebar { background-color: #262f35; }
+﻿html {
+    font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+.sidebar {
+    background-color: #282828;
+}
