@@ -20,13 +20,12 @@ All versions since 8.2 update 3 are present (this version was the first to offic
   * Windows 10 or Windows Server 2016 that is up to date and at least the 1709 build.
   * Hyper-V installed
   * Latest stable Docker engine and cli.
-* Use directly or fork: `https://github.com/sitecoreops/sitecore-images`.
 
 ## How to use
 
 Configure your build server to:
 
-1. Trigger a build on changes to this git repository - to get new versions.
+1. Trigger a build on changes to `https://github.com/sitecoreops/sitecore-images` - to get new versions.
 1. Trigger once a week - to get base images updated when Microsoft releases patched images.
 
 ./Build.ps1 should be called like this:
