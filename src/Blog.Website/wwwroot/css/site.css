@@ -1,7 +1,18 @@
-﻿html {
-    font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+﻿html { font-family: "Segoe UI", Helvetica, Arial, sans-serif; }
+
+.sidebar { background-color: #282828; }
+
+.sidebar .awards img {
+    border-radius: initial;
+    display: block;
+    margin: 0 auto;
+    width: 80px;
 }
 
-.sidebar {
-    background-color: #282828;
+@media (min-width: 48em) {
+    .sidebar .awards img {
+        display: initial;
+        margin: initial;
+        width: 160px;
+    }
 }
