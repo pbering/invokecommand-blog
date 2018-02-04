@@ -58,3 +58,5 @@ The Sitecore version number used in the tags *may* seem at bit strange at first 
 When it's done running, you should end up with something like this:
 
 [![Sitecore Docker image repository](/content/images/docker-hub-sitecore-repository.png)](/content/images/docker-hub-sitecore-repository.png)
+
+I hope that you also will find this useful :)
