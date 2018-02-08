@@ -3,18 +3,13 @@ WORKDIR /app
 EXPOSE 80
 
 FROM microsoft/aspnetcore-build:2.0 AS build
+COPY . /src
 WORKDIR /src
-COPY *.sln ./
-COPY src/Blog.Website/Blog.Website.csproj src/Blog.Website/
-RUN dotnet restore
-COPY . .
-WORKDIR /src/src/Blog.Website
-RUN dotnet build -c Release -o /app
-
-FROM build AS publish
-RUN dotnet publish -c Release -o /app
+RUN dotnet restore && \
+    dotnet build -c Release -o /app && \
+    dotnet publish -c Release -o /app
 
 FROM base AS final
 WORKDIR /app
-COPY --from=publish /app .
+COPY --from=build /app .
 ENTRYPOINT ["dotnet", "Blog.Website.dll"]

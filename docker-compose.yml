@@ -4,5 +4,4 @@ services:
   blog:
     image: invokecommand-blog
     build:
-      context: .
-      dockerfile: src/Blog.Website/Dockerfile
+      context: src/Blog.Website
