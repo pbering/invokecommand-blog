@@ -13,7 +13,6 @@ namespace Blog.Website
         public static IWebHost BuildWebHost(string[] args)
         {
             return WebHost.CreateDefaultBuilder(args)
-                .UseApplicationInsights()
                 .UseStartup<Startup>()
                 .Build();
         }

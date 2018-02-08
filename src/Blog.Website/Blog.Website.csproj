@@ -6,12 +6,20 @@
     <ApplicationInsightsResourceId>/subscriptions/9a29784c-7e20-4c9b-ba73-e8ae1a87b470/resourcegroups/invokecommand/providers/microsoft.insights/components/invokecommandnet</ApplicationInsightsResourceId>
     <ApplicationInsightsAnnotationResourceId>/subscriptions/9a29784c-7e20-4c9b-ba73-e8ae1a87b470/resourcegroups/invokecommand/providers/microsoft.insights/components/invokecommandnet</ApplicationInsightsAnnotationResourceId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="iis-rewrite-rules.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="iis-rewrite-rules.xml" />
+  </ItemGroup>
  
   <ItemGroup>
     <PackageReference Include="BuildBundlerMinifier" Version="2.6.362" />
-    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
     <PackageReference Include="CommonMark.NET" Version="0.15.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Rewrite" Version="2.0.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,10 +30,6 @@
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services" />
   </ItemGroup>
 
 </Project>
