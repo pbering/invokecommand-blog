@@ -2,6 +2,6 @@ version: '3'
 
 services:
   blog:
-    image: invokecommand-blog
+    image: pbering/invokecommand-blog
     build:
       context: src/Blog.Website
