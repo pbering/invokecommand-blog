@@ -6,14 +6,6 @@
     <ApplicationInsightsResourceId>/subscriptions/9a29784c-7e20-4c9b-ba73-e8ae1a87b470/resourcegroups/invokecommand/providers/microsoft.insights/components/invokecommandnet</ApplicationInsightsResourceId>
     <ApplicationInsightsAnnotationResourceId>/subscriptions/9a29784c-7e20-4c9b-ba73-e8ae1a87b470/resourcegroups/invokecommand/providers/microsoft.insights/components/invokecommandnet</ApplicationInsightsAnnotationResourceId>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="iis-rewrite-rules.xml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="iis-rewrite-rules.xml" />
-  </ItemGroup>
  
   <ItemGroup>
     <PackageReference Include="BuildBundlerMinifier" Version="2.6.362" />
@@ -26,9 +18,9 @@
     <None Update="Posts\**\*">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </None>
-    <None Update="iis-rewrite-rules.xml">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </None>
+    <Content Include="iis-rewrite-rules.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
