@@ -27,8 +27,6 @@ services:
 
   cm:
     image: your-org-or-username/sitecore:9.0.171219-xm1-cm
-    ports:
-      - 80:80
     links:
       - sql
 ````
