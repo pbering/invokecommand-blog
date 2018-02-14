@@ -31,15 +31,13 @@ namespace Blog.Website.Middleware
                                         new XDeclaration("1.0", "utf-8", null),
                                         new XElement(ns + "urlset",
                                                      new XElement(ns + "url",
-                                                                  new XElement(ns + "loc", context.Request.Scheme + "://" + context.Request.Host.Value),
+                                                                  new XElement(ns + "loc", "https://" + context.Request.Host.Value),
                                                                   new XElement(ns + "lastmod", DateTime.Now.ToString("yyyy-MM-dd")),
                                                                   new XElement(ns + "changefreq", "daily")),
                                                      from post in posts
                                                      select
                                                      new XElement(ns + "url",
-                                                                  new XElement(ns + "loc",
-                                                                               context.Request.Scheme + "://" + context.Request.Host.Value +
-                                                                               post.Name),
+                                                                  new XElement(ns + "loc", "https://" + context.Request.Host.Value + post.Name),
                                                                   new XElement(ns + "lastmod", post.Published.ToString("yyyy-MM-dd")),
                                                                   new XElement(ns + "changefreq", "daily"))
                                                     )

@@ -32,8 +32,7 @@ namespace Blog.Website.Middleware
                                         new XElement(ns + "rss",
                                                      new XAttribute("version", "2.0"),
                                                      new XElement(ns + "channel",
-                                                                  new XElement(ns + "link",
-                                                                               context.Request.Scheme + "://" + context.Request.Host.Value),
+                                                                  new XElement(ns + "link", "https://" + context.Request.Host.Value),
                                                                   new XElement(ns + "lastBuildDate", DateTime.Now.ToString("R")),
                                                                   new XElement(ns + "title", "invokecommand.net"),
                                                                   new XElement(ns + "description", "All blog posts"),
@@ -41,10 +40,7 @@ namespace Blog.Website.Middleware
                                                                   from post in posts
                                                                   select
                                                                   new XElement(ns + "item",
-                                                                               new XElement(ns + "link",
-                                                                                            context.Request.Scheme + "://" +
-                                                                                            context.Request.Host.Value +
-                                                                                            post.Url),
+                                                                               new XElement(ns + "link", "https://" + context.Request.Host.Value + post.Url),
                                                                                new XElement(ns + "description", post.Summary),
                                                                                new XElement(ns + "title", post.Title),
                                                                                new XElement(ns + "updated", post.Published.ToString("R")),
