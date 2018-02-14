@@ -25,12 +25,27 @@ namespace Blog.Website
                 app.UseDeveloperExceptionPage();
             }
 
-            using (var iisRewriteRules = File.OpenText(Path.Combine(env.ContentRootPath, "iis-rewrite-rules.xml")))
+            using (var rules = File.OpenText(Path.Combine(env.ContentRootPath, "iis-rewrite-rules.xml")))
             {
-                var options = new RewriteOptions().AddIISUrlRewrite(iisRewriteRules);
-
-                app.UseRewriter(options);
+                app.UseRewriter(new RewriteOptions().AddIISUrlRewrite(rules));
             }
+            
+            app.UseHsts(hsts => hsts.MaxAge(365).IncludeSubdomains());
+            app.UseXContentTypeOptions();
+            app.UseReferrerPolicy(opts => opts.NoReferrer());
+            app.UseXXssProtection(options => options.EnabledWithBlockMode());
+            app.UseXfo(options => options.Deny());
+ 
+            app.UseCsp(opts => opts
+                               .BlockAllMixedContent()
+                               .StyleSources(s => s.Self())
+                               .StyleSources(s => s.UnsafeInline())
+                               .FontSources(s => s.Self())
+                               .FormActions(s => s.Self())
+                               .FrameAncestors(s => s.Self())
+                               .ImageSources(s => s.Self())
+                               .ScriptSources(s => s.Self())
+                      );
 
             app.UseResponseCaching();
             app.UseStaticFiles();
