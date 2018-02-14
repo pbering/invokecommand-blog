@@ -37,7 +37,7 @@ namespace Blog.Website.Middleware
                                                      from post in posts
                                                      select
                                                      new XElement(ns + "url",
-                                                                  new XElement(ns + "loc", "https://" + context.Request.Host.Value + "/" + post.Name),
+                                                                  new XElement(ns + "loc", "https://" + context.Request.Host.Value + post.Url),
                                                                   new XElement(ns + "lastmod", post.Published.ToString("yyyy-MM-dd")),
                                                                   new XElement(ns + "changefreq", "daily"))
                                                     )
