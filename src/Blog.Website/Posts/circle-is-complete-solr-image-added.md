@@ -33,4 +33,4 @@ services:
       - solr
 ````
 
->NOTE: First time only: Make a request to `/sitecore/admin/PopulateManagedSchema.aspx?indexes=all` (same as: Control Panel -> Indexing -> Populate Solr Managed Schema). This step is normally done by SIF when running in non Docker environments.
+>NOTE: First time only: Make a request to `/sitecore/admin/PopulateManagedSchema.aspx?indexes=all` (same as: Control Panel -> Indexing -> Populate Solr Managed Schema). This step is normally done by SIF when installing the `sitecore-XM1-cm.json` config, when running in non Docker environments.
