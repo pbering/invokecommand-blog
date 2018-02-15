@@ -32,20 +32,20 @@ namespace Blog.Website.Middleware
                                         new XElement(ns + "rss",
                                                      new XAttribute("version", "2.0"),
                                                      new XElement(ns + "channel",
-                                                                  new XElement(ns + "link", "https://" + context.Request.Host.Value),
+                                                                  new XElement(ns + "link", context.GetAbsoluteUrl("/")),
                                                                   new XElement(ns + "lastBuildDate", DateTime.Now.ToString("R")),
                                                                   new XElement(ns + "title", "invokecommand.net"),
                                                                   new XElement(ns + "description", "All blog posts"),
                                                                   new XElement(ns + "language", "en-us"),
                                                                   from post in posts
                                                                   select
-                                                                  new XElement(ns + "item",
-                                                                               new XElement(ns + "link", "https://" + context.Request.Host.Value + post.Url),
-                                                                               new XElement(ns + "description", post.Summary),
-                                                                               new XElement(ns + "title", post.Title),
-                                                                               new XElement(ns + "updated", post.Published.ToString("R")),
-                                                                               new XElement(ns + "guid", post.Name,
-                                                                                            new XAttribute("isPermaLink", "false")))
+                                                                      new XElement(ns + "item",
+                                                                                   new XElement(ns + "link", context.GetAbsoluteUrl(post.Url)),
+                                                                                   new XElement(ns + "description", post.Summary),
+                                                                                   new XElement(ns + "title", post.Title),
+                                                                                   new XElement(ns + "updated", post.Published.ToString("R")),
+                                                                                   new XElement(ns + "guid", post.Name,
+                                                                                                new XAttribute("isPermaLink", "false")))
                                                                  ))
                                        );
 

@@ -23,19 +23,21 @@ namespace Blog.Website
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
+                HttpContextExtensions.AlwaysUseHttp = true;
             }
 
             using (var rules = File.OpenText(Path.Combine(env.ContentRootPath, "iis-rewrite-rules.xml")))
             {
                 app.UseRewriter(new RewriteOptions().AddIISUrlRewrite(rules));
             }
-            
+
             app.UseHsts(hsts => hsts.AllResponses().MaxAge(365).IncludeSubdomains());
             app.UseXContentTypeOptions();
             app.UseReferrerPolicy(opts => opts.NoReferrer());
             app.UseXXssProtection(options => options.EnabledWithBlockMode());
             app.UseXfo(options => options.Deny());
- 
+
             app.UseCsp(opts => opts
                                .BlockAllMixedContent()
                                .StyleSources(s => s.Self())

@@ -22,7 +22,7 @@ namespace Blog.Website.Middleware
                 var text = new StringBuilder();
 
                 text.Append("User-agent: *\n");
-                text.AppendFormat("Sitemap: https://{0}/sitemap.xml\n", context.Request.Host.Value);
+                text.AppendFormat("Sitemap: {0}\n", context.GetAbsoluteUrl("/sitemap.xml"));
 
                 context.Response.ContentType = "text/plain";
                 context.Response.Headers.Add("Cache-Control", new StringValues("public, max-age=86400"));
