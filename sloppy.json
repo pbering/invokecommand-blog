@@ -1,0 +1,41 @@
+{
+  "project": "invokecommand",
+  "services": [
+    {
+      "id": "frontend",
+      "apps": [
+        {
+          "id": "www",
+          "image": "pbering/invokecommand-blog",
+          "instances": 1,
+          "mem": 192,
+          "domain": {
+            "uri": "invokecommand.net www.invokecommand.net www-invokecommand.sloppy.zone"
+          },
+          "ssl": true,
+          "port_mappings": [
+            {
+              "container_port": 80
+            }
+          ],
+          "env": {
+            "HAPROXY_0_REDIRECT_TO_HTTPS": "true",
+            "ASPNETCORE_ENVIRONMENT": "Production"
+          },
+          "health_checks": [
+            {
+              "type": "HTTP",
+              "path": "/",
+              "timeout_seconds": 20,
+              "interval_seconds": 60,
+              "max_consecutive_failures": 3,
+              "grace_period_seconds": 300
+            }
+          ],
+          "dependencies": [
+          ]
+        }
+      ]
+    }
+  ]
+}
