@@ -2,5 +2,5 @@
 <div class="post">
     <h1 class="post-title"><a href="@Model.Url">@Model.Title</a></h1>
     @Html.Raw(Model.Text)
-    @Html.Partial("_Tagged", Model)
+    @await Html.PartialAsync("_Tagged", Model)
 </div>

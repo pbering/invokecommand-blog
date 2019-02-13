@@ -6,6 +6,6 @@
             <a href="@post.Url">@post.Title</a>
         </h1>
         <p>@post.Summary</p>
-        @Html.Partial("_Tagged", post)
+        @await Html.PartialAsync("_Tagged", post)
     }
 </div>
