@@ -16,3 +16,7 @@
         width: 160px;
     }
 }
+
+.container {
+  max-width: 48rem;
+}
