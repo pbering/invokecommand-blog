@@ -8,7 +8,7 @@ The Sitecore 9 Experience Management (XM) images has been around for a while and
 
 Until now I haven't been involved in any projects that had the need for the full blown XP on Docker, but that is about to change. So in preparation for this I have released images for Sitecore 9.1 and 9.0.2 XP out on [https://github.com/sitecoreops/sitecore-images](https://github.com/sitecoreops/sitecore-images).
 
-Sitecore 9.1 XP is both for 1803 *and* ltsc2019 since it's the first Sitecore version that **officially** supports Windows Server 2019, see the [Sitecore compatibility table](https://kb.sitecore.net/articles/087164).
+Sitecore 9.1 XP is both for 1803 *and* ltsc2019 ~~since it's the first Sitecore version that **officially** supports Windows Server 2019, see the [Sitecore compatibility table](https://kb.sitecore.net/articles/087164)~~ [Update] I was either dreaming or it was removed again, but now it seem that Windows Server 2019 is **not supported yet**. That said I have not seen any issues on the images and only the issue below on the host OS.
 
 > Please be aware of this [issue](https://github.com/moby/moby/issues/38484) if you plan on running Sitecore 9.1 on ltsc2019 in a hybrid Docker swarm cluster. Thankfully a Windows update should be available soon.
 
