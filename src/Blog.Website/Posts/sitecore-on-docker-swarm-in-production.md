@@ -72,6 +72,4 @@ There is no auto scaling in Docker Swarm, we monitor CPU, Memory and disk usage 
 
 ## Closing
 
-Even with the few downsides described above I would recommend to run Sitecore in Docker containers (also in production) using Swarm, instead of a classic Sitecore Azure App service deployment or on-prem. I'm sure that we will end up moving our clusters to AKS in near future to mitigate the downsides and also to get auto scaling.
-
-As long as Sitecore (or any other Windows based app) runs in containers, we can avoid long slow deployments and we are not bound which orchestration we can use - or which cloud provider for that matter, so our dev teams can move faster with more confidence.
+Even with the few downsides described above I would always prefer to run Sitecore in Docker containers (also in production) using Swarm, instead of a classic Sitecore Azure App service deployments or on-prem. I'm sure that we will end up moving our clusters to AKS in near future to mitigate the downsides and also to get auto scaling. As long as Sitecore (or any other Windows based app) runs in containers, we can avoid long slow deployments and we are not bound which orchestration we can use - or which cloud provider for that matter, so our dev teams can move faster with more confidence.
