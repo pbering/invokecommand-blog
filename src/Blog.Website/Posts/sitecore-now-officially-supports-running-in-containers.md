@@ -9,7 +9,7 @@ While we have been running [Sitecore in containers in production for a while](/p
 
 Check out [https://kb.sitecore.net/articles/161310](https://kb.sitecore.net/articles/161310) for the details.
 
-[![Success](https://i.giphy.com/media/msKNSs8rmJ5m/giphy.webp)](https://i.giphy.com/media/msKNSs8rmJ5m/giphy.webp)
+[![Success](/content/images/success.gif)](/content/images/success.gif)
 
 In my opinion it's a very important step for Sitecore as a platform, us and our customers and I for one is *extremely happy* :)
 
