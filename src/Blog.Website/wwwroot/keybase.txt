@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/pbering
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://invokecommand.net
+  * I am pbering (https://keybase.io/pbering) on keybase.
+  * I have a public key ASCGDo67nzTNJYJy8iWl1vGer60R8GayZtykKI1MOY_AEwo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "01200220983c709d7a777e5b4e1dab2694738628f4109c502edb6408234c91a5873f0a",
+      "host": "keybase.io",
+      "kid": "0120860e8ebb9f34cd258272f225a5d6f19eafad11f066b266dca4288d4c398fc0130a",
+      "uid": "0dca82a18260d6f42ccb09478885d719",
+      "username": "pbering"
+    },
+    "merkle_root": {
+      "ctime": 1582893710,
+      "hash": "e4e113cd7e35a08639d7a36685597bb9901a29e84477dd16f0a8f1ba010963126180a69416c0d6613933abcbc8d590ffc35ffeff8c30dfa182300d3160b96bbd",
+      "hash_meta": "19db23467a6a386ebaee7a2332b28191115e400074faf19c01836593b06cf5f2",
+      "seqno": 14789859
+    },
+    "service": {
+      "entropy": "ajj9WjOVqH5K3rP0g+FOeHxW",
+      "hostname": "invokecommand.net",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "5.2.1"
+  },
+  "ctime": 1582893750,
+  "expire_in": 504576000,
+  "prev": "e8706d15512a74862dfcfa989365e0c1825225433f0bea07f4483f21cfebcba8",
+  "seqno": 26,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEghg6Ou580zSWCcvIlpdbxnq+tEfBmsmbcpCiNTDmPwBMKp3BheWxvYWTESpcCGsQg6HBtFVEqdIYt/PqYk2XgwYJSJUM/C+oH9Eg/Ic/ry6jEIC7L9RAl1+/KV663nG9XCayQ+dYv69+EwI1KahuG+VCgAgHCo3NpZ8RA0OnnfHL6KOWpPp+hYB81f9liq8KSsemxXb950liFyTvYfU2tEvdVCqc+72/mUy2VX21pOFRYjewIDwRBwGCiAahzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIA0DH/hCnlLxUNSRbsJeF4sXCE6rs+1rm9am5rHDleaTo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/pbering
+
+==================================================================
