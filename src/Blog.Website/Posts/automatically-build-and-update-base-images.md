@@ -2,7 +2,7 @@
 title: Automatically build and update Sitecore base Docker images
 summary: A git repository that you can use directly and get private images of all Sitecore versions
 date: 2018-02-04
-tags: Sitecore, Docker, CI/CD, Automation, Containers
+tags: Sitecore, Docker, CICD, Automation, Containers
 ---
 Having a repository of base images for each Sitecore version that can be shared between machines (workstations, servers etc.) is the foundation for everything Docker and Sitecore. Base images can also serve as the base for specialized images, preconfigured for each of the different Sitecore roles (CM, CD, Reporting, Processing, xConnect etc.)
 
