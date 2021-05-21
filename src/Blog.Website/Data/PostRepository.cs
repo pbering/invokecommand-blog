@@ -12,7 +12,7 @@ namespace Blog.Website.Data
     {
         private readonly IEnumerable<PostModel> _posts;
 
-        public PostRepository(IHostingEnvironment environment)
+        public PostRepository(IWebHostEnvironment environment)
         {
             var posts = new List<PostModel>();
             var postsPath = Path.Combine(environment.ContentRootPath, "Posts");

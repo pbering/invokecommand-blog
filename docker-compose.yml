@@ -1,6 +1,5 @@
-version: '3.4'
-
 services:
+
   blog:
     image: pbering/invokecommand-blog
     build:
