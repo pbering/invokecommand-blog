@@ -53,7 +53,10 @@ namespace Blog.Website
                 ContentTypeProvider = contentTypeMappings,
                 OnPrepareResponse = ctx =>
                 {
-                    ctx.Context.Response.Headers[HeaderNames.CacheControl] = "public,max-age=" + TimeSpan.FromDays(1).TotalSeconds;
+                    if (!env.IsDevelopment())
+                    {
+                        ctx.Context.Response.Headers[HeaderNames.CacheControl] = "public,max-age=" + TimeSpan.FromDays(365).TotalSeconds;
+                    }
                 }
             });
 
