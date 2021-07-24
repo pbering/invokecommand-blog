@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Blog.Website.Data;
 using Blog.Website.Middleware;
 using Microsoft.AspNetCore.Builder;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Net.Http.Headers;
 
 namespace Blog.Website
 {
@@ -48,9 +50,12 @@ namespace Blog.Website
 
             app.UseStaticFiles(new StaticFileOptions
             {
-                ContentTypeProvider = contentTypeMappings
+                ContentTypeProvider = contentTypeMappings,
+                OnPrepareResponse = ctx =>
+                {
+                    ctx.Context.Response.Headers[HeaderNames.CacheControl] = "public,max-age=" + TimeSpan.FromDays(1).TotalSeconds;
+                }
             });
-
 
             app.UseHsts(hsts => hsts.AllResponses().MaxAge(365).IncludeSubdomains());
             app.UseXContentTypeOptions();
