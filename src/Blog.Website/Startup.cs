@@ -4,6 +4,7 @@ using Blog.Website.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Rewrite;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -39,6 +40,16 @@ namespace Blog.Website
             {
                 app.UseRewriter(new RewriteOptions().AddIISUrlRewrite(rules));
             }
+
+            var contentTypeMappings = new FileExtensionContentTypeProvider();
+
+            contentTypeMappings.Mappings[".css"] = "text/css; charset=utf-8";
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                ContentTypeProvider = contentTypeMappings
+            });
+
 
             app.UseHsts(hsts => hsts.AllResponses().MaxAge(365).IncludeSubdomains());
             app.UseXContentTypeOptions();
