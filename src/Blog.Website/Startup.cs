@@ -24,6 +24,7 @@ namespace Blog.Website
         {
             services.AddControllersWithViews();
             services.AddResponseCaching();
+            services.AddResponseCompression();
             services.AddSingleton<IPostRepository, PostRepository>();
         }
 
@@ -68,7 +69,7 @@ namespace Blog.Website
                       );
 
             app.UseResponseCaching();
-            app.UseStaticFiles();
+            app.UseResponseCompression();
             app.UseMiddleware<RobotsTxtMiddleware>();
             app.UseMiddleware<SitemapMiddleware>();
             app.UseMiddleware<RssMiddleware>();
