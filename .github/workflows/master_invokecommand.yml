@@ -31,7 +31,7 @@ jobs:
       with:
         push: true
         tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_131cb57b73da4c4cb202e19d3a7047b3 }}/pbering/invokecommand-blog:${{ github.sha }}
-        file: ./Dockerfile
+        file: ./src/Blog.Website/Dockerfile
 
   deploy:
     runs-on: ubuntu-latest
