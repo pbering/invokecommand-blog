@@ -5,7 +5,7 @@ date: 2022-11-03
 tags: Sitecore, xmcloud, dotnet
 ---
 
-During Symposium 2022 a few weeks back I felt inspired to explorer how we can get a nice modern developer experience using .NET 6 and XM Cloud.
+During Symposium 2022 a few weeks back I felt inspired to explore how we can get a nice modern developer experience using .NET 6 and XM Cloud.
 
 Most topics during Symposium was around using Next.js / Vercel and it seems that Sitecore is pretty excited about that and not giving .NET 6 much attention.
 
