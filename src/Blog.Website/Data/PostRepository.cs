@@ -29,7 +29,7 @@ namespace Blog.Website.Data
                     Published = DateTime.Parse(file.Fields["date"]),
                     Title = file.Fields["title"],
                     Text = file.Body,
-                    Tags = file.Fields["tags"].Split(',').Select(t => t.Trim()).ToArray(),
+                    Tags = file.Fields["tags"].Split(',').Select(t => t.Trim().ToLowerInvariant()).ToArray(),
                     Summary = file.Fields["summary"],
                     Url = "/posts/" + file.Name
                 };

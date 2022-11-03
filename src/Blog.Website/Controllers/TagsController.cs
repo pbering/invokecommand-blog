@@ -1,7 +1,7 @@
-﻿using System.Linq;
-using Blog.Website.Data;
+﻿using Blog.Website.Data;
 using Blog.Website.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace Blog.Website.Controllers
 {
@@ -18,13 +18,11 @@ namespace Blog.Website.Controllers
         [Route("tags/{*name}")]
         public IActionResult Index(string name)
         {
-            var model =
-                new HomeModel(_repository.Get()
-                                         .Where(p => p.Tags.Select(t => t.ToLowerInvariant()).Contains(name)));
+            var model = new HomeModel(_repository.Get().Where(p => p.Tags.Contains(name)));
 
             if (model.Posts.Any())
             {
-                ViewBag.Title = $"Posts tagged with {name}:";
+                ViewBag.Title = $"Posts tagged with '{name}':";
 
                 return View(model);
             }

@@ -1,6 +1,6 @@
 ---
 title: Using .NET 6 as the head for headless sites in Sitecore XM Cloud
-summary: During Symposium 2022 a few weeks back I felt inspired to explorer how we can get a nice modern developer experience using .NET 6 and XM Cloud
+summary: During Symposium 2022 a few weeks back I felt inspired to explorer how we can get a nice modern developer experience using .NET 6 and XM Cloud.
 date: 2022-11-03
 tags: Sitecore, xmcloud, dotnet
 ---
