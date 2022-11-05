@@ -4,41 +4,42 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@ViewBag.Title - invokecommand.net</title>
-    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="invokecommand.net"/>
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="invokecommand.net" />
     <environment names="Development">
         <link rel="stylesheet" href="/css/poole.css">
         <link rel="stylesheet" href="/css/hyde.css">
         <link rel="stylesheet" href="/css/site.css">
     </environment>
     <environment names="Staging,Production">
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true"/>
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
 </head>
 <body>
-<div class="sidebar">
-    <div class="container sidebar-sticky">
-        <div class="sidebar-about">
-            <h2>
-                <a href="/">
-                    invokecommand.net
-                </a>
-            </h2>
-            <p class="lead">adventures in code, Sitecore, DevOps and technology</p>
-            <p class="awards">
-                <a href="https://www.sitecore.com/mvp">
-                    <img src="/content/images/mvp-logo-2019.jpg" alt="Sitecore MVP since 2017"/>
-                </a>
-            </p>
+    <div class="sidebar">
+        <div class="container sidebar-sticky">
+            <div class="sidebar-about">
+                <h2>
+                    <a href="/">
+                        invokecommand.net
+                    </a>
+                </h2>
+                <p class="lead">adventures in code, Sitecore, DevOps and technology</p>
+                <p class="awards">
+                    <a href="https://www.sitecore.com/mvp">
+                        <img src="/content/images/mvp-logo-2019.jpg" alt="Sitecore MVP since 2017" />
+                    </a>
+                </p>
+            </div>
+            <nav class="sidebar-nav">
+                <a class="sidebar-nav-item" rel="me" href="https://mastodon.social/@@pmbering">@@pmbering@@mastodon.social</a>
+                <a class="sidebar-nav-item" href="https://twitter.com/pbering">twitter.com/pbering</a>
+                <a class="sidebar-nav-item" href="https://github.com/pbering">github.com/pbering</a>
+                <a class="sidebar-nav-item" href="/rss.xml">RSS</a>
+            </nav>
         </div>
-        <nav class="sidebar-nav">
-            <a class="sidebar-nav-item" href="https://twitter.com/pbering">twitter.com/pbering</a>
-            <a class="sidebar-nav-item" href="https://github.com/pbering">github.com/pbering</a>
-            <a class="sidebar-nav-item" href="/rss.xml">RSS</a>
-        </nav>
     </div>
-</div>
-<div class="content container">
-    @RenderBody()
-</div>
+    <div class="content container">
+        @RenderBody()
+    </div>
 </body>
 </html>
