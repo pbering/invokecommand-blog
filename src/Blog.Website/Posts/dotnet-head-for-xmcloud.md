@@ -11,10 +11,6 @@ Most topics during Symposium was around using Next.js / Vercel and it seems that
 
 I believe in using the right tool for the job, but sometimes JavaScript/Node is _not_ the right tool for your next head implementation. That could be for technical reasons or maybe coworkers and/or client teams are not _able_ (or _willing_) to switch stacks.
 
-<!-- ## TODO
-- SXA navigation component is broken, workaround...
--->
-
 ## Getting started
 
 1. Go to <https://deploy.sitecorecloud.io/> and create a new project and an environment named `dev`.
