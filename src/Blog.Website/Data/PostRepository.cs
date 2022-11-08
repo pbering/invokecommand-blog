@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Blog.Website.Data.Markdown;
+using Blog.Website.Models;
+using Markdig;
+using Microsoft.AspNetCore.Hosting;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Blog.Website.Data.Markdown;
-using Blog.Website.Models;
-using Microsoft.AspNetCore.Hosting;
 
 namespace Blog.Website.Data
 {
@@ -12,7 +13,7 @@ namespace Blog.Website.Data
     {
         private readonly IEnumerable<PostModel> _posts;
 
-        public PostRepository(IWebHostEnvironment environment)
+        public PostRepository(IWebHostEnvironment environment, MarkdownPipeline markdownPipeline)
         {
             var posts = new List<PostModel>();
             var postsPath = Path.Combine(environment.ContentRootPath, "Posts");
@@ -21,7 +22,7 @@ namespace Blog.Website.Data
             {
                 var file = new MarkdownFile(new FileInfo(filePath));
 
-                file.Parse();
+                file.Parse(markdownPipeline);
 
                 var post = new PostModel
                 {

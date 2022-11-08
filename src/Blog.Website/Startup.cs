@@ -1,7 +1,8 @@
-﻿using System;
-using System.IO;
-using Blog.Website.Data;
+﻿using Blog.Website.Data;
 using Blog.Website.Middleware;
+using ColorCode.Styling;
+using Markdig;
+using Markdown.ColorCode;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Rewrite;
@@ -10,6 +11,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Net.Http.Headers;
+using System;
+using System.IO;
 
 namespace Blog.Website
 {
@@ -27,6 +30,7 @@ namespace Blog.Website
             services.AddControllersWithViews();
             services.AddResponseCaching();
             services.AddResponseCompression();
+            services.AddSingleton(x => new MarkdownPipelineBuilder().UseAdvancedExtensions().UseColorCode(StyleDictionary.DefaultDark).Build());
             services.AddSingleton<IPostRepository, PostRepository>();
         }
 

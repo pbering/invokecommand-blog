@@ -33,7 +33,7 @@ I believe in using the right tool for the job, but sometimes JavaScript/Node is 
 
 1. Add a new `appsettings.Development.json` file in the root:
 
-   ```json
+   ```javascript
    {
      "Sitecore": {
        "ExperienceEdgeToken": "<INSERT YOUR EDGE TOKEN HERE>",
@@ -56,7 +56,7 @@ Let's up the game a bit and wire up our local .NET 6 head as an [editing host](h
 1. Copy the url from "Forwarding" shown, in my case <https://171b-87-62-101-2.eu.ngrok.io/>.
 1. Open "items\demo-site\serialization\DemoSiteRendering\demo.yml" and update to this:
 
-   ```text
+   ```yaml
        Hint: ServerSideRenderingEngineApplicationUrl
        Value: "https://171b-87-62-101-2.eu.ngrok.io/"
        Hint: ServerSideRenderingEngineEndpointUrl
