@@ -5,6 +5,8 @@ date: 2022-11-03
 tags: Sitecore, xmcloud, dotnet
 ---
 
+>UPDATE 2022-11-16: The git repo <https://github.com/pbering/xmc-demo-dotnethead> used in this post has been updated to .NET 7.0, see [".NET 7.0 released, impact on .NET based head implementations for Sitecore XM Cloud"](/posts/dotnet7-released).
+
 During Symposium 2022 a few weeks back I felt inspired to explore how we can get a nice modern developer experience using .NET 6 and XM Cloud.
 
 Most topics during Symposium was around using Next.js / Vercel and it seems that Sitecore is pretty excited about that and not giving .NET 6 much attention.
