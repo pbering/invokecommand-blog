@@ -1,6 +1,4 @@
-﻿using ColorCode.Styling;
-using Markdig;
-using Markdown.ColorCode;
+﻿using Markdig;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -73,7 +71,7 @@ namespace Blog.Website.Data.Markdown
             {
                 throw new InvalidFieldException("No fields was found");
             }
-                        
+
             Body = Markdig.Markdown.ToHtml(reader.ReadToEnd(), markdownPipeline);
         }
     }

@@ -16,11 +16,11 @@ namespace Blog.Website.Controllers
         [ResponseCache(Duration = 86400, Location = ResponseCacheLocation.Any)]
         public IActionResult Index()
         {
-            ViewBag.Title = "Home";
-
-            var model = new HomeModel(_repository.Get());
-
-            return View(model);
+            return View(new HomeModel(_repository.Get())
+            {
+                Title = "Home",
+                Url = "/"
+            });
         }
     }
 }

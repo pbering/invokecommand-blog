@@ -22,7 +22,8 @@ namespace Blog.Website.Controllers
 
             if (model.Posts.Any())
             {
-                ViewBag.Title = $"Posts tagged with '{name}':";
+                model.Title = $"Posts tagged with '{name}'";
+                model.Url = $"/tags/{name}";
 
                 return View(model);
             }

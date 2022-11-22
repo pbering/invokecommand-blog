@@ -22,8 +22,6 @@ namespace Blog.Website.Controllers
 
             if (post != null)
             {
-                ViewBag.Title = post.Title;
-
                 return View(post);
             }
 
