@@ -20,3 +20,16 @@
 .container {
   max-width: 48rem;
 }
+
+a {
+    color: #2B5997;
+    text-decoration: underline;
+}
+
+h1 a, h2 a, h3 a, h4 a {
+    text-decoration: none;
+}
+
+.post-date {
+    color: #57575C;
+}
