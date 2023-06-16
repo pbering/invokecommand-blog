@@ -63,13 +63,13 @@ Expand-Archive -Path "~\Downloads\windows-node.zip" -DestinationPath "~\Download
 Then start installation with:
 
 ```powershell
-msiexec.exe /i (Get-Item "~\Downloads\k8s.msi").FullName ADDLOCAL=CoreFeature,WindowsNodeFeature /passive
+msiexec.exe /i (Get-Item "~\Downloads\k8s.msi").FullName /passive ADDLOCAL=CoreFeature,WindowsNodeFeature
 ```
 
 ...or if you want the VM disks on another drive (see [docs](https://learn.microsoft.com/en-us/azure/aks/hybrid/aks-edge-howto-setup-machine#install-aks-edge-essentials) for all arguments):
 
 ```powershell
-msiexec.exe /i (Get-Item "~\Downloads\k8s.msi").FullName ADDLOCAL=CoreFeature,WindowsNodeFeature VHDXDIR=D:\Data\AksEdge /passiv`
+msiexec.exe /i (Get-Item "~\Downloads\k8s.msi").FullName /passive ADDLOCAL=CoreFeature,WindowsNodeFeature VHDXDIR=D:\Data\AksEdge
 ```
 
 Now verify you the installation was successful:
@@ -79,10 +79,7 @@ Import-Module AksEdge
 Get-Command -Module AKSEdge | Format-Table Name, Version
 ```
 
-Before starting the cluster deployment, some **IMPORTANT** notes:
-
-1. The following command will **overwrite** your current [kubeconfig](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/) at $HOME/.kube/config, so make sure to backup if needed.
-1. **Must** be run in PowerShell 5.0!!! see <https://github.com/Azure/AKS-Edge/issues/118>
+> IMPORTANT! Before starting the cluster deployment, please notice that the following command will **overwrite** your current [kubeconfig](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/) at $HOME/.kube/config, so make sure to backup if needed!
 
 Now you can deploy a new cluster (takes about ~6 minutes):
 
