@@ -79,7 +79,7 @@ Import-Module AksEdge
 Get-Command -Module AKSEdge | Format-Table Name, Version
 ```
 
-> IMPORTANT! Before starting the cluster deployment, please notice that the following command will **overwrite** your current [kubeconfig](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/) at $HOME/.kube/config, so make sure to backup if needed!
+> IMPORTANT! Before starting the cluster deployment, please notice that the following command will **overwrite** your current [kubeconfig](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/) at $HOME/.kube/config, so make sure to backup if needed! See <https://github.com/Azure/AKS-Edge/issues/125> for details.
 
 Now you can deploy a new cluster (takes about ~6 minutes):
 
