@@ -30,7 +30,7 @@ namespace Blog.Website
             services.AddControllersWithViews();
             services.AddResponseCaching();
             services.AddResponseCompression();
-            services.AddSingleton(x => new MarkdownPipelineBuilder().UseAdvancedExtensions().UseColorCode(StyleDictionary.DefaultDark).Build());
+            services.AddSingleton(x => new MarkdownPipelineBuilder().UseAdvancedExtensions().UseColorCode(HtmlFormatterType.Css, StyleDictionary.DefaultDark).Build());
             services.AddSingleton<IPostRepository, PostRepository>();
         }
 
