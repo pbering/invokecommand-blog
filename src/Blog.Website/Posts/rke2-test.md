@@ -75,6 +75,10 @@ Now install Sitecore XM:
 1. run `kubectl apply -n xm -k .\workloads\xm`
 1. when running, open <https://cm-xm.rke2-test.lab/>
 
+## Cleanup
+
+When done with this lab, run `vagrant destroy` to remove all of the above.
+
 ## Conclusion
 
 When it comes to choosing a Kubernetes distribution for your Windows based workloads, you have various options to consider. While distributions like AKS Edge Essentials can serve the needs of Windows users and server admins, they may not offer optimal performance due to their reliance on nodes running inside virtual machines and resource limitations.
