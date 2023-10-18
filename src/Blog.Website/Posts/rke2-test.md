@@ -20,7 +20,7 @@ The [installation is very easy](https://docs.rke2.io/install/quickstart) and sup
 First thing first, some prerequisites:
 
 - Hyper-V installed
-- Vagrant **>= 2.8.3** (<https://github.com/hashicorp/vagrant/releases>)
+- Vagrant **>= 2.4.0** (<https://developer.hashicorp.com/vagrant/downloads?product_intent=vagrant>)
 - kubectl (`winget install --id Kubernetes.kubectl`)
 - helm (`winget install --id Helm.Helm`)
 - mkcert (`winget install --id FiloSottile.mkcert`)
