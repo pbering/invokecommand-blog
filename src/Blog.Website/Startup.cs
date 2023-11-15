@@ -81,7 +81,12 @@ namespace Blog.Website
                       );
 
             app.UseResponseCaching();
-            app.UseResponseCompression();
+
+            if (!env.IsDevelopment())
+            {
+                app.UseResponseCompression();
+            }
+
             app.UseMiddleware<RobotsTxtMiddleware>();
             app.UseMiddleware<SitemapMiddleware>();
             app.UseMiddleware<RssMiddleware>();

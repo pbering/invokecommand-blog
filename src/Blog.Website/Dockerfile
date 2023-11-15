@@ -1,15 +1,21 @@
-FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+USER app
 WORKDIR /app
-EXPOSE 80
+EXPOSE 8080
 
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
-COPY . /src
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-RUN dotnet restore && \
-    dotnet build -c Release -o /app && \
-    dotnet publish -c Release -o /app
+COPY ["Blog.Website.csproj", "."]
+RUN dotnet restore './Blog.Website.csproj'
+COPY . .
+RUN dotnet build './Blog.Website.csproj' -c $BUILD_CONFIGURATION -o /app/build
+
+FROM build AS publish
+ARG BUILD_CONFIGURATION=Release
+RUN dotnet publish "./Blog.Website.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
-COPY --from=build /app .
+COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Blog.Website.dll"]

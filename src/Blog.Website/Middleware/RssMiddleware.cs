@@ -50,7 +50,7 @@ namespace Blog.Website.Middleware
                                        );
 
                 context.Response.ContentType = "text/xml";
-                context.Response.Headers.Add("Cache-Control", new StringValues("public, max-age=86400"));
+                context.Response.Headers.Append("Cache-Control", new StringValues("public, max-age=86400"));
 
                 await context.Response.WriteAsync(xml.ToString());
 

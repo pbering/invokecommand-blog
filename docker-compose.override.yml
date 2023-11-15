@@ -1,7 +1,6 @@
 services:
-
   blog:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - "7979:80"
+      - "7979:8080"
