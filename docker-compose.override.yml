@@ -3,4 +3,4 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - "7979:8080"
+      - "7979:80"

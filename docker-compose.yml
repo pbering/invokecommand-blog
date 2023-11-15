@@ -2,4 +2,5 @@ services:
   blog:
     image: pbering/invokecommand-blog
     build:
-      context: src/Blog.Website
+      context: .
+      dockerfile: ./src/Blog.Website/Dockerfile

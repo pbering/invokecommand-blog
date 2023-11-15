@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
     <ApplicationInsightsResourceId>/subscriptions/9a29784c-7e20-4c9b-ba73-e8ae1a87b470/resourcegroups/invokecommand/providers/microsoft.insights/components/invokecommandnet</ApplicationInsightsResourceId>
     <ApplicationInsightsAnnotationResourceId>/subscriptions/9a29784c-7e20-4c9b-ba73-e8ae1a87b470/resourcegroups/invokecommand/providers/microsoft.insights/components/invokecommandnet</ApplicationInsightsAnnotationResourceId>
   </PropertyGroup>
