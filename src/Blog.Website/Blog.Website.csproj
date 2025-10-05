@@ -1,17 +1,15 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <ApplicationInsightsResourceId>/subscriptions/9a29784c-7e20-4c9b-ba73-e8ae1a87b470/resourcegroups/invokecommand/providers/microsoft.insights/components/invokecommandnet</ApplicationInsightsResourceId>
     <ApplicationInsightsAnnotationResourceId>/subscriptions/9a29784c-7e20-4c9b-ba73-e8ae1a87b470/resourcegroups/invokecommand/providers/microsoft.insights/components/invokecommandnet</ApplicationInsightsAnnotationResourceId>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
-    <PackageReference Include="Markdig " Version="0.30.4" />
+    <PackageReference Include="Markdig" Version="0.42.0" />
     <PackageReference Include="Markdown.ColorCode" Version="3.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Rewrite" Version="2.3.0" />
-    <PackageReference Include="NWebsec.AspNetCore.Middleware" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,10 +19,6 @@
     <Content Include="iis-rewrite-rules.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Update="Markdig" Version="0.42.0" />
   </ItemGroup>
 
 </Project>
