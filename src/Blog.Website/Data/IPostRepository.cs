@@ -1,10 +1,8 @@
-using System.Collections.Generic;
 using Blog.Website.Models;
 
-namespace Blog.Website.Data
+namespace Blog.Website.Data;
+
+public interface IPostRepository
 {
-    public interface IPostRepository
-    {
-        IEnumerable<PostModel> Get();
-    }
+    IEnumerable<PostModel> Get();
 }

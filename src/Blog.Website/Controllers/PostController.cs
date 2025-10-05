@@ -3,29 +3,28 @@ using System.Linq;
 using Blog.Website.Data;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Blog.Website.Controllers
+namespace Blog.Website.Controllers;
+
+public class PostController : Controller
 {
-    public class PostController : Controller
+    private readonly IPostRepository _repository;
+
+    public PostController(IPostRepository repository)
     {
-        private readonly IPostRepository _repository;
+        _repository = repository;
+    }
 
-        public PostController(IPostRepository repository)
+    [ResponseCache(Duration = 86400, Location = ResponseCacheLocation.Any)]
+    [Route("posts/{*name}")]
+    public IActionResult Index(string name)
+    {
+        var post = _repository.Get().FirstOrDefault(p => p.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+
+        if (post != null)
         {
-            _repository = repository;
+            return View(post);
         }
 
-        [ResponseCache(Duration = 86400, Location = ResponseCacheLocation.Any)]
-        [Route("posts/{*name}")]
-        public IActionResult Index(string name)
-        {
-            var post = _repository.Get().FirstOrDefault(p => p.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
-
-            if (post != null)
-            {
-                return View(post);
-            }
-
-            return NotFound();
-        }
+        return NotFound();
     }
 }

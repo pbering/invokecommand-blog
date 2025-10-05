@@ -2,25 +2,24 @@
 using Blog.Website.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Blog.Website.Controllers
+namespace Blog.Website.Controllers;
+
+public class HomeController : Controller
 {
-    public class HomeController : Controller
+    private readonly IPostRepository _repository;
+
+    public HomeController(IPostRepository repository)
     {
-        private readonly IPostRepository _repository;
+        _repository = repository;
+    }
 
-        public HomeController(IPostRepository repository)
+    [ResponseCache(Duration = 86400, Location = ResponseCacheLocation.Any)]
+    public IActionResult Index()
+    {
+        return View(new HomeModel(_repository.Get())
         {
-            _repository = repository;
-        }
-
-        [ResponseCache(Duration = 86400, Location = ResponseCacheLocation.Any)]
-        public IActionResult Index()
-        {
-            return View(new HomeModel(_repository.Get())
-            {
-                Title = "Home",
-                Url = "/"
-            });
-        }
+            Title = "Home",
+            Url = "/"
+        });
     }
 }

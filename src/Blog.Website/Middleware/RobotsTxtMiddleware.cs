@@ -1,38 +1,31 @@
-using System;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
+using System.Text;
 
-namespace Blog.Website.Middleware
+namespace Blog.Website.Middleware;
+
+public class RobotsTxtMiddleware
 {
-    public class RobotsTxtMiddleware
+    private readonly RequestDelegate _next;
+
+    public RobotsTxtMiddleware(RequestDelegate next) => _next = next;
+
+    public async Task Invoke(HttpContext context)
     {
-        private readonly RequestDelegate _next;
-
-        public RobotsTxtMiddleware(RequestDelegate next)
+        if (context.Request.Path.Equals(new PathString("/robots.txt"), StringComparison.OrdinalIgnoreCase))
         {
-            _next = next;
+            var text = new StringBuilder();
+
+            text.Append("User-agent: *\n");
+            text.AppendFormat("Sitemap: {0}\n", context.GetAbsoluteUrl("/sitemap.xml"));
+
+            context.Response.ContentType = "text/plain";
+            context.Response.Headers.Append("Cache-Control", new StringValues("public, max-age=86400"));
+
+            await context.Response.WriteAsync(text.ToString());
+
+            return;
         }
 
-        public async Task Invoke(HttpContext context)
-        {
-            if (context.Request.Path.Equals(new PathString("/robots.txt"), StringComparison.OrdinalIgnoreCase))
-            {
-                var text = new StringBuilder();
-
-                text.Append("User-agent: *\n");
-                text.AppendFormat("Sitemap: {0}\n", context.GetAbsoluteUrl("/sitemap.xml"));
-
-                context.Response.ContentType = "text/plain";
-                context.Response.Headers.Append("Cache-Control", new StringValues("public, max-age=86400"));
-
-                await context.Response.WriteAsync(text.ToString());
-
-                return;
-            }
-
-            await _next(context);
-        }
+        await _next(context);
     }
 }

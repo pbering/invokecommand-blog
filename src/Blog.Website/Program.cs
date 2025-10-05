@@ -4,6 +4,7 @@ using ColorCode.Styling;
 using Markdig;
 using Markdown.ColorCode;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,7 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Net.Http.Headers;
 using System;
 using System.IO;
-using Microsoft.AspNetCore.Http;
+using System.Linq;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +29,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
+    
     HttpContextExtensions.AlwaysUseHttp = true;
 }
 else
@@ -38,14 +40,9 @@ else
 }
 
 app.UseHttpsRedirection();
-
-
-using (var rules = File.OpenText(Path.Combine(app.Environment.ContentRootPath, "iis-rewrite-rules.xml")))
-{
-    var options = new RewriteOptions()
-        .AddIISUrlRewrite(rules);
-    app.UseRewriter(options);
-}
+app.UseRewriter(new RewriteOptions()
+    .AddRedirectToNonWwwPermanent()
+    .Add(new LowercaseRule()));
 
 var contentTypeMappings = new FileExtensionContentTypeProvider();
 contentTypeMappings.Mappings[".css"] = "text/css; charset=utf-8";
@@ -77,7 +74,6 @@ app.Use(async (context, next) =>
     await next();
 });
 
-
 app.UseResponseCaching();
 
 if (!app.Environment.IsDevelopment())
@@ -96,3 +92,28 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+class LowercaseRule : IRule
+{
+    public void ApplyRule(RewriteContext context)
+    {
+        var request = context.HttpContext.Request;
+        var path = request.Path;
+        var pathAndQuery = request.Path + request.QueryString;
+
+        if (path.HasValue && path.Value.Any(char.IsUpper))
+        {
+            var newUrl = path.Value.ToLowerInvariant() + request.QueryString;
+            var response = context.HttpContext.Response;
+
+            response.StatusCode = StatusCodes.Status301MovedPermanently;
+            response.Headers[HeaderNames.Location] = newUrl;
+            
+            context.Result = RuleResult.EndResponse;
+        }
+        else
+        {
+            context.Result = RuleResult.ContinueRules;
+        }
+    }
+}

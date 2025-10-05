@@ -1,49 +1,40 @@
 ﻿using Blog.Website.Data.Markdown;
 using Blog.Website.Models;
 using Markdig;
-using Microsoft.AspNetCore.Hosting;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 
-namespace Blog.Website.Data
+namespace Blog.Website.Data;
+
+public class PostRepository : IPostRepository
 {
-    public class PostRepository : IPostRepository
+    private readonly IEnumerable<PostModel> _posts;
+
+    public PostRepository(IWebHostEnvironment environment, MarkdownPipeline markdownPipeline)
     {
-        private readonly IEnumerable<PostModel> _posts;
+        var posts = new List<PostModel>();
+        var postsPath = Path.Combine(environment.ContentRootPath, "Posts");
 
-        public PostRepository(IWebHostEnvironment environment, MarkdownPipeline markdownPipeline)
+        foreach (var filePath in Directory.GetFiles(postsPath, "*.md"))
         {
-            var posts = new List<PostModel>();
-            var postsPath = Path.Combine(environment.ContentRootPath, "Posts");
+            var file = new MarkdownFile(new FileInfo(filePath));
 
-            foreach (var filePath in Directory.GetFiles(postsPath, "*.md"))
+            file.Parse(markdownPipeline);
+
+            var post = new PostModel
             {
-                var file = new MarkdownFile(new FileInfo(filePath));
+                Name = file.Name,
+                Published = DateTime.Parse(file.Fields["date"]),
+                Title = file.Fields["title"],
+                Text = file.Body,
+                Tags = file.Fields["tags"].Split(',').Select(t => t.Trim().ToLowerInvariant()).ToArray(),
+                Summary = file.Fields["summary"],
+                Url = "/posts/" + file.Name
+            };
 
-                file.Parse(markdownPipeline);
-
-                var post = new PostModel
-                {
-                    Name = file.Name,
-                    Published = DateTime.Parse(file.Fields["date"]),
-                    Title = file.Fields["title"],
-                    Text = file.Body,
-                    Tags = file.Fields["tags"].Split(',').Select(t => t.Trim().ToLowerInvariant()).ToArray(),
-                    Summary = file.Fields["summary"],
-                    Url = "/posts/" + file.Name
-                };
-
-                posts.Add(post);
-            }
-
-            _posts = posts.OrderByDescending(p => p.Published);
+            posts.Add(post);
         }
 
-        public IEnumerable<PostModel> Get()
-        {
-            return _posts;
-        }
+        _posts = posts.OrderByDescending(p => p.Published);
     }
+
+    public IEnumerable<PostModel> Get() => _posts;
 }

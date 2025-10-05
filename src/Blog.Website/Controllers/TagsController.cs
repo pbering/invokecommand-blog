@@ -3,32 +3,31 @@ using Blog.Website.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
-namespace Blog.Website.Controllers
+namespace Blog.Website.Controllers;
+
+public class TagsController : Controller
 {
-    public class TagsController : Controller
+    private readonly IPostRepository _repository;
+
+    public TagsController(IPostRepository repository)
     {
-        private readonly IPostRepository _repository;
+        _repository = repository;
+    }
 
-        public TagsController(IPostRepository repository)
+    [ResponseCache(Duration = 86400, Location = ResponseCacheLocation.Any)]
+    [Route("tags/{*name}")]
+    public IActionResult Index(string name)
+    {
+        var model = new HomeModel(_repository.Get().Where(p => p.Tags.Contains(name)));
+
+        if (model.Posts.Any())
         {
-            _repository = repository;
+            model.Title = $"Posts tagged with '{name}'";
+            model.Url = $"/tags/{name}";
+
+            return View(model);
         }
 
-        [ResponseCache(Duration = 86400, Location = ResponseCacheLocation.Any)]
-        [Route("tags/{*name}")]
-        public IActionResult Index(string name)
-        {
-            var model = new HomeModel(_repository.Get().Where(p => p.Tags.Contains(name)));
-
-            if (model.Posts.Any())
-            {
-                model.Title = $"Posts tagged with '{name}'";
-                model.Url = $"/tags/{name}";
-
-                return View(model);
-            }
-
-            return NotFound();
-        }
+        return NotFound();
     }
 }

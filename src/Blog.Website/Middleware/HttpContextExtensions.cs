@@ -1,35 +1,24 @@
-﻿using System;
-using Microsoft.AspNetCore.Http;
+﻿namespace Blog.Website.Middleware;
 
-namespace Blog.Website.Middleware
+public static class HttpContextExtensions
 {
-    public static class HttpContextExtensions
+    public static bool AlwaysUseHttp { get; set; }
+
+    public static string GetAbsoluteUrl(this HttpContext context, string path)
     {
-        public static bool AlwaysUseHttp { get; set; }
+        ArgumentNullException.ThrowIfNull(context);
+        ArgumentNullException.ThrowIfNull(path);
 
-        public static string GetAbsoluteUrl(this HttpContext context, string path)
+        path = path.TrimStart('/');
+
+        var hostname = context.Request.Host.Value;
+        var scheme = "https";
+
+        if (AlwaysUseHttp)
         {
-            if (context == null)
-            {
-                throw new ArgumentNullException(nameof(context));
-            }
-
-            if (path == null)
-            {
-                throw new ArgumentNullException(nameof(path));
-            }
-
-            path = path.TrimStart('/');
-
-            var hostname = context.Request.Host.Value;
-            var scheme = "https";
-
-            if (AlwaysUseHttp)
-            {
-                scheme = "http";
-            }
-
-            return $"{scheme}://{hostname}/{path}";
+            scheme = "http";
         }
+
+        return $"{scheme}://{hostname}/{path}";
     }
 }
