@@ -49,7 +49,7 @@ EEE is released as [native binaries](https://github.com/sitecoreops/experience-e
    ```
 
 1. Now let's put some more data in there, try to execute the [crawl mutation](http://localhost:5710/?query=mutation%20%7B%0A%20%20crawl(%0A%20%20%20%20edgeContextId%3A%20%22%3CLIVE%20CONTEXT%20ID%3E%22%0A%20%20%20%20languages%3A%20%5B%22en%22%5D%0A%20%20)%20%7B%0A%20%20%20%20success%0A%20%20%20%20itemsProcessed%0A%20%20%20%20sitesProcessed%0A%20%20%20%20durationMs%0A%20%20%20%20message%0A%20%20%7D%0A%7D&operationName=Crawl) that crawls an existing edge endpoint for all sites in the languages defined. **Update** `<LIVE CONTEXT ID>` **with your own**. You can filter sites to crawl using the `siteNames` parameter if you only want to crawl some sites.
-1. You are now ready to change your local head app edge endpoint to EEE endpoint: <http://localhost:5710/graphql>.
+1. You are now ready to change your local head app edge endpoint to the EEE endpoint instead: <http://localhost:5710/graphql>.
 
 ## Conclusion
 
