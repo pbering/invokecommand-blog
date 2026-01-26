@@ -3,16 +3,9 @@ using Blog.Website.Middleware;
 using ColorCode.Styling;
 using Markdig;
 using Markdown.ColorCode;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.AspNetCore.StaticFiles;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Net.Http.Headers;
-using System;
-using System.IO;
-using System.Linq;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,7 +22,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
-    
+
     HttpContextExtensions.AlwaysUseHttp = true;
 }
 else
@@ -63,7 +56,7 @@ app.Use(async (context, next) =>
 {
     context.Response.Headers.Append("X-Content-Type-Options", "nosniff");
     context.Response.Headers.Append("X-Frame-Options", "DENY");
-    context.Response.Headers.Append("Content-Security-Policy", 
+    context.Response.Headers.Append("Content-Security-Policy",
         "block-all-mixed-content;" +
         "style-src 'self' 'unsafe-inline';" +
         "font-src 'self';" +
@@ -108,7 +101,7 @@ class LowercaseRule : IRule
 
             response.StatusCode = StatusCodes.Status301MovedPermanently;
             response.Headers[HeaderNames.Location] = newUrl;
-            
+
             context.Result = RuleResult.EndResponse;
         }
         else
