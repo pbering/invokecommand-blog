@@ -20,35 +20,32 @@ public class RssMiddleware
         if (context.Request.Path.Equals(new PathString("/rss.xml"), StringComparison.OrdinalIgnoreCase))
         {
             var posts = _postRepository.Get();
-
-            XNamespace ns = "http://www.w3.org/2005/Atom";
-
             var xml = new XDocument(
                                     new XDeclaration("1.0", "utf-8", null),
-                                    new XElement(ns + "rss",
+                                    new XElement("rss",
                                                  new XAttribute("version", "2.0"),
-                                                 new XElement(ns + "channel",
-                                                              new XElement(ns + "link", context.GetAbsoluteUrl("/")),
-                                                              new XElement(ns + "lastBuildDate", DateTime.Now.ToString("R")),
-                                                              new XElement(ns + "title", "invokecommand.net"),
-                                                              new XElement(ns + "description", "All blog posts"),
-                                                              new XElement(ns + "language", "en-us"),
+                                                 new XElement("channel",
+                                                              new XElement("link", context.GetAbsoluteUrl("/")),
+                                                              new XElement("lastBuildDate", DateTime.Now.ToString("R")),
+                                                              new XElement("title", "invokecommand.net"),
+                                                              new XElement("description", "All blog posts"),
+                                                              new XElement("language", "en-us"),
                                                               from post in posts
                                                               select
-                                                                  new XElement(ns + "item",
-                                                                               new XElement(ns + "link", context.GetAbsoluteUrl(post.Url)),
-                                                                               new XElement(ns + "description", post.Summary),
-                                                                               new XElement(ns + "title", post.Title),
-                                                                               new XElement(ns + "updated", post.Published.ToString("R")),
-                                                                               new XElement(ns + "guid", post.Name,
-                                                                                            new XAttribute("isPermaLink", "false")))
+                                                                  new XElement("item",
+                                                                               new XElement("link", context.GetAbsoluteUrl(post.Url)),
+                                                                               new XElement("description", post.Summary),
+                                                                               new XElement("title", post.Title),
+                                                                               new XElement("pubDate", post.Published.ToString("R")),
+                                                                               new XElement("guid", post.Name,
+                                                                                            new XAttribute("isPermaLink", "false"))
                                                              ))
-                                   );
+                                   ));
 
             context.Response.ContentType = "text/xml";
             context.Response.Headers.Append("Cache-Control", new StringValues("public, max-age=86400"));
 
-            await context.Response.WriteAsync(xml.ToString());
+            await context.Response.WriteAsync(xml.ToString(SaveOptions.DisableFormatting));
 
             return;
         }
